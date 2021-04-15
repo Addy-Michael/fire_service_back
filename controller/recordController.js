@@ -13,6 +13,17 @@ exports.getRecords = catchAsync(async (req,res,next) => {
     })
 })
 
+// GET NEW RECORDS
+exports.getNewRecords = catchAsync(async (req,res,next) => {
+    const records = await Record.find().skip(0).limit(4).sort('-createdAt');
+
+    res.status(200).json({
+        status: "successful",
+        results: records.length,
+        records
+    })
+})
+
 // GET REPORT USING ID
 exports.getReportById = catchAsync(async (req,res,next) => {
     const record = await Record.findOne({reportID: req.params.reportID});

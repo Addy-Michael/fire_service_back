@@ -8,6 +8,8 @@ router.route('/')
     .get(recordController.getRecords)
     .post(authController.protect,recordController.addRecord);
 
+router.get('/new_records/',recordController.getNewRecords);
+
 router.route('/:reportID')
     .get(recordController.getReportById)
     .patch(authController.protect,authController.restrict('admin'),recordController.editRecord)

@@ -1,6 +1,6 @@
 [
     {
-        "reportID": "001",
+        "reportID": "007",
         "livesAffected": 10,
         "causeOfDiaster": "Electrical fault",
         "location": "Labadi - Accra",
@@ -10,7 +10,7 @@
         "year":2019
     },
     {
-        "reportID": "002",
+        "reportID": "008",
         "livesAffected": 3,
         "causeOfDiaster": "Gas leakage",
         "location": "Aburi - Eastern",
@@ -20,7 +20,7 @@
         "year": 2020
     },
     {
-        "reportID": "003",
+        "reportID": "009",
         "livesAffected": 20,
         "causeOfDiaster": "Overheating",
         "location": "Labadi - Accra",
@@ -30,7 +30,7 @@
         "year":2021
     },
     {
-        "reportID": "004",
+        "reportID": "010",
         "livesAffected": 15,
         "causeOfDiaster": "Electrical fault",
         "location": "Kaneshie - Accra",
@@ -40,7 +40,7 @@
         "year":2017
     },
     {
-        "reportID": "005",
+        "reportID": "011",
         "livesAffected": 11,
         "causeOfDiaster": "Flood",
         "location": "Osu - Accra",
@@ -50,7 +50,7 @@
         "year":2021
     },
     {
-        "reportID": "006",
+        "reportID": "012",
         "livesAffected": 12,
         "causeOfDiaster": "Electrical fault",
         "location": "Lapaz - Accra",
