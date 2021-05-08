@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Admin Dashboard|FireFighters</title>
+</head>
+<body>
+    <main class="mainDashboard">
+        <div class="container">
+            <section class="content">
+                <aside class="mainDashboard__aside">
+                    <h1>FireFighters</h1>
+                    <div class="mainDashboard__admin-details">
+                        <div class="admin__img"><img src="/img/profile.jpg" alt=""></div>
+                        <span class="role">Administrator</span>
+                    </div>
+                    <div class="mainDashboard__admin-setting">
+                        <a href="/userprofile.html" class="btn viewProfile"><i class="fas fa-user-alt"></i>View Profile</a>
+                        <a href="#" class="btn logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                    <div class="mainDashboard__admin-navigation">
+                        <h3 class="h-gray">Navigation</h3>
+                        <div class="keys">
+                            <a href="/dashboard.html" class="btn dashboard"><i class="fas fa-columns"></i>Dashboard</a>
+                            <a href="/index.html" class="btn home"><i class="fas fa-home"></i>Home</a>
+                        </div>
+                    </div>
+                    <div class="mainDashboard__admin-tasks">
+                        <h3 class="h-gray">Records</h3>
+                        <div class="keys">
+                            <a href="/reports.html" target="_blank" class="btn reports">View all reports</a>
+                            <a href="/staffs.html" target="_blank" class="btn home">View all employees</a>
+                        </div>
+                    </div>
+                </aside>
+                <div class="mainDashboard__admin">
+                    <div class="mainDashboard__admin-info">
+                        <div class="totalStaff">
+                            0
+                            <h3>Staffs</h3>
+                        </div>
+                        <div class="totalRecord">
+                            0
+                            <h3>Records</h3>
+                        </div>
+                    </div>
+                    <div class="monitoring">
+                        <div class="staffDetails">
+                            <div class="staffDetails__user">
+                                <div class="staffDetails__user-img"><img src="/img/profile.jpg" alt=""></div>
+                                <div class="staffDetails__user-id">Staff ID</div>
+                                <div class="staffDetails__user-role">Staff Role</div>
+                                <a href="#" class="staffDetails__user-del"><i class="fas fa-trash"></i></a>
+                            </div>
+                            <div class="staffDetails__user">
+                                <div class="staffDetails__user-img"><img src="/img/profile.jpg" alt=""></div>
+                                <div class="staffDetails__user-id">Staff ID</div>
+                                <div class="staffDetails__user-role">Staff Role</div>
+                                <a href="#" class="staffDetails__user-del"><i class="fas fa-trash"></i></a>
+                            </div>
+                            <div class="staffDetails__user">
+                                <div class="staffDetails__user-img"><img src="/img/profile.jpg" alt=""></div>
+                                <div class="staffDetails__user-id">Staff ID</div>
+                                <div class="staffDetails__user-role">Staff Role</div>
+                                <a href="#" class="staffDetails__user-del"><i class="fas fa-trash"></i></a>
+                            </div>
+                            <div class="staffDetails__user">
+                                <div class="staffDetails__user-img"><img src="/img/profile.jpg" alt=""></div>
+                                <div class="staffDetails__user-id">Staff ID</div>
+                                <div class="staffDetails__user-role">Staff Role</div>
+                                <a href="#" class="staffDetails__user-del"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="recordDetails">
+                            <div class="recordDetails__rec">
+                                <div class="recordDetails__rec-id">Report ID</div>
+                                <div class="recordDetails__rec-role">Staff ID</div>
+                                <div class="recordDetails__rec-date">10/09/2021</div>
+                                <div class="recordDetails__rec-delete">
+                                    <a href="#" class="recordDetails__rec-view"><i class="fas fa-eye"></i></a>   
+                                    <a href="#" class="recordDetails__rec-del"><i class="fas fa-trash"></i></a>   
+                                </div>
+                            </div>
+                            <div class="recordDetails__rec">
+                                <div class="recordDetails__rec-id">Report ID</div>
+                                <div class="recordDetails__rec-role">Staff ID</div>
+                                <div class="recordDetails__rec-date">10/09/2021</div>
+                                <div class="recordDetails__rec-delete">
+                                    <a href="#" class="recordDetails__rec-view"><i class="fas fa-eye"></i></a>   
+                                    <a href="#" class="recordDetails__rec-del"><i class="fas fa-trash"></i></a>   
+                                </div>
+                            </div>
+                            <div class="recordDetails__rec">
+                                <div class="recordDetails__user-id">Report ID</div>
+                                <div class="recordDetails__user-role">Staff ID</div>
+                                <div class="recordDetails__rec-date">10/09/2021</div>
+                                <div class="recordDetails__rec-delete">
+                                    <a href="#" class="recordDetails__rec-view"><i class="fas fa-eye"></i></a>   
+                                    <a href="#" class="recordDetails__rec-del"><i class="fas fa-trash"></i></a>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#AddRec" class="btn addRecord"><i class="fas fa-plus"></i></a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <section class="records" id="AddRec">
+        <div class="content">
+            <div class="rec">
+                <div class="records__identify">
+                    <input type="number" class="rnum" placeholder="Enter report num" min="1" max="31">
+                    <input type="text" class="uid" placeholder="Enter staff ID">
+                </div>
+                <div class="records__date">
+                    <select name="day" class="date-info dash-day">
+                        <!-- <option value="Monday">Mon</option> -->
+                    </select>
+                    <select name="date" class="date-info dash-date">
+                        <!-- <option value="1">1</option>-->
+                    </select>
+                    <select name="month" class="date-info dash-month">
+                        <!-- <option value="January">Jan</option> -->
+                    </select>
+                    <select name="month" class="date-info dash-year">
+                        <!-- <option value="2019">2019</option>-->
+                    </select>
+                </div>
+            </div>
+            <div class="rec">
+                <input type="text" placeholder="Enter location" class="loc">
+                <input type="text" placeholder="Enter cause of diaster" class="dis">
+            </div>
+            <textarea class="report" placeholder="Enter report"></textarea>
+            <div class="butt">
+                <a href="/dashboard.html" class="btn btn--orange exit">Exit Report</a>
+                <a href="#" class="btn btn--orange add">Add Report</a>
+            </div>
+        </div>
+    </section>
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

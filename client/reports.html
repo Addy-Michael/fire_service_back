@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>All Reports | FireFighters</title>
+  </head>
+  <body>
+    <section class="admin__reports" id="top">
+        <div class="query">
+            <div class="container">
+                <input type="text" class="reportID" placeholder="Enter report number">
+                <input list="months" class="reportMonth" id="month" placeholder="month">
+                <datalist id="months" class="dl_months">
+                    <!-- <option value="January"> -->
+                </datalist>
+                <select class="reportYear">
+                    <!-- <option value="2021">2021</option> -->
+                </select>
+                <button type="submit" class="searchRecords btn--outline-orange">Search Records</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="admin__reports-title stickyTitle">
+                <h3>Report ID</h3>
+                <h3>Lives affected</h3>
+                <h3>cause of diaster</h3>
+                <h3>location</h3>
+                <h3>Date</h3>
+            </div>
+            <!-- <div class="admin__reports-view">
+                <div class="admin__reports-view--num">
+                    001
+                </div>
+                <div class="admin__reports-view--livesAffected">
+                    004
+                </div>
+                <div class="admin__reports-view--COD">
+                    electrical fault
+                </div>
+                <div class="admin__reports-view--location">
+                    labadi - Accra
+                </div>
+                <div class="admin__reports-view--DOD">
+                    10/09/1997
+                </div>
+                <div class="admin__reports-view--operations">
+                    <i class="fas fa-eye"></i>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+            </div> -->
+            <a href="#top" class="btn search">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+    </section>
+    <script src="/js/api.js"></script>
+    <script src="/js/reports.js"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Profile|FireFighters</title>
+  </head>
+  <body>
+    <header class="profile__header">
+      <div class="container">
+        <nav class="nav">
+          <h1>FireFighters</h1>
+          <ul class="nav__list">
+            <li>
+              <span class="profilePicture"
+                ><img src="/img/profile.jpg" alt="addy michael"
+              /></span>
+              <a href="#"
+                ><span class="userEmail">addymichael16@outlook.com</span></a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="signOut fas fa-sign-out-alt"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="mainProfile">
+      <section class="user">
+        <div class="container">
+          <div class="user__form">
+            <div class="user__form-picture">
+              <img src="/img/profile.jpg" />
+            </div>
+            <input class="image" type="file" name="picture" id="pic" />
+            <label class="img__open" for="pic"
+              ><i class="signOut fas fa-camera"></i
+            ></label>
+            <div class="user__form-name">
+              <div class="form__fname half">
+                <label for="fname">First Name:</label>
+                <input type="text" name="first_name" id="fname" />
+              </div>
+              <div class="form__lname half">
+                <label for="lname">Last Name:</label>
+                <input type="text" name="last_name" id="lname" />
+              </div>
+            </div>
+            <div class="user__form-contact">
+              <div class="form__email half">
+                <label for="mail">Email:</label>
+                <input type="text" name="email" id="mail" />
+              </div>
+              <div class="form__number half">
+                <label for="tel">Phone Number:</label>
+                <input type="tel" name="tel_num" id="tel" />
+              </div>
+            </div>
+            <div class="user__form-info">
+              <div class="form__dateOfBirth half">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" name="date_of_birth" id="dob" />
+              </div>
+              <div class="role half">
+                <label for="user-role">Role</label>
+                <select name="gender" id="user-role">
+                  <option value="admin">Admin</option>
+                  <option value="staff">Staff</option>
+                </select>
+              </div>
+              <div class="gender half">
+                <label for="gen">Gender</label>
+                <select name="gender" id="gen">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="user__form-pass">
+              <div class="form__password half">
+                <label for="password">password:</label>
+                <input type="password" name="password" id="password" />
+              </div>
+              <div class="form__confirmPassword half">
+                <label for="confirmPass">confirm password:</label>
+                <input type="password" name="staff_id" id="confirmPass" />
+              </div>
+            </div>
+            <div class="user__form-edit">
+              <a href="/changepassword.html" class="btn btn--orange"
+                >Change Pasword</a
+              >
+              <a href="#" class="btn btn--outline-orange updateProfile"
+                >Update Profile</a
+              >
+              <a href="#" class="btn btn--orange">Delete Profile</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy;Copyright 2021. All rights reserved. We are here to serve,
+          educate and save lives.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

@@ -1,0 +1,990 @@
+/*index.html*/
+// Navigation
+.header {
+  @include headerStyle;
+
+  .nav {
+    @include headerNavStyle;
+
+    h1 {
+      @include headerH1Style;
+    }
+
+    &__list {
+      @include headerNavList;
+
+      a {
+        display: block;
+        text-decoration: none;
+        padding: 2rem;
+        color: #fff;
+        @include transition2s;
+
+        &:hover {
+          color: $color-orange-dark;
+        }
+      }
+    }
+  }
+
+  &__section {
+    height: 80vh;
+    background: url("/img/background.jpg") no-repeat center center/cover;
+  }
+}
+
+.main {
+  .about {
+    background: #fff;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+
+    &__content {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+
+      &-info,
+      &-img {
+        width: 50%;
+      }
+
+      .read {
+        width: 100%;
+        margin-top: 1rem;
+
+        a {
+          padding: 0.5rem;
+          color: #fff;
+          margin-left: 50%;
+          transform: translate(-50%, 0);
+          @include transition5s;
+
+          &:hover {
+            background: $color-orange-dark;
+          }
+        }
+      }
+
+      &-img {
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .services {
+    &__content {
+      h2 {
+        text-align: center;
+      }
+
+      &-items {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2.5rem;
+
+        .item {
+          width: 40rem;
+
+          i {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 50%;
+            font-size: 4rem;
+          }
+
+          h3 {
+            color: $color-orange;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background: $color-black;
+  font-size: 2rem;
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+// userprofile.html
+.profile__header {
+  @include headerStyle;
+
+  .nav {
+    @include headerNavStyle;
+
+    h1 {
+      @include headerH1Style;
+    }
+
+    &__list {
+      @include headerNavList;
+      align-items: center;
+
+      li:first-child {
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .profilePicture {
+        @include headerProfilePic;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        padding: 1rem 0;
+        @include transition2s;
+
+        &:hover {
+          color: $color-orange-dark;
+        }
+
+        .signOut {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+.user {
+  &__form {
+    width: 60rem;
+    margin: 4rem auto;
+
+    label {
+      display: block;
+      text-transform: capitalize;
+    }
+
+    &-picture {
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      background: #fff;
+      margin: 0 auto;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .image {
+      display: none;
+    }
+
+    .img__open {
+      position: absolute;
+      top: 25.5rem;
+      left: 76.5rem;
+      font-size: 3rem;
+      cursor: pointer;
+      color: $color-orange;
+    }
+
+    &-name,
+    &-contact,
+    &-info,
+    &-pass {
+      display: flex;
+      width: 100%;
+      margin-bottom: 2.5rem;
+
+      .half {
+        width: 50%;
+
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+      }
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 3.5rem;
+      padding: 0 1.5rem;
+      border: none;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $color-orange;
+      }
+    }
+
+    &-edit {
+      text-align: right;
+
+      a {
+        padding: 0.5rem;
+        color: #fff;
+        @include transition2s;
+
+        &:hover{
+          background: $color-orange-dark;
+        }
+      }
+
+      .updateProfile{
+        color: $color-orange;
+
+        &:hover{ 
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}
+
+// dashboard.html
+.mainDashboard {
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem 0;
+  }
+
+  &__aside {
+    background: #fff;
+    width: 25%;
+    padding: 0 0.5rem;
+    @include dashBoxShadow;
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      background: linear-gradient(45deg, $color-orange, $color-orange-dark);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__admin-details {
+    text-align: center;
+
+    .admin__img {
+      height: 10rem;
+      width: 10rem;
+      background: #fff;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .role {
+      color: $color-gray;
+    }
+  }
+
+  &__admin-setting {
+    margin-top: 1rem;
+    a {
+      display: block;
+      margin-left: 2.5rem;
+      color: $color-orange;
+      font-weight: 500;
+      @include transition2s;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      &:hover {
+        color: $color-orange-dark;
+      }
+
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &__admin-navigation {
+    margin-top: 1rem;
+
+    .keys {
+      margin-top: 1rem;
+
+      a {
+        display: block;
+        margin-left: 2.5rem;
+        color: $color-orange;
+        @include transition2s;
+
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+
+        &:hover {
+          color: $color-orange-dark;
+        }
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+
+      .dashboard {
+        background: $color-orange;
+        color: #fff;
+        padding: 1rem;
+        @include transition2s;
+
+        &:hover {
+          color: #fff;
+          background: $color-orange-dark;
+        }
+      }
+    }
+  }
+
+  &__admin-tasks {
+    margin-top: 1rem;
+
+    .keys {
+      margin-top: 1rem;
+
+      a {
+        display: block;
+        margin-left: 2.5rem;
+        color: $color-primary;
+        padding: 1rem;
+        background: $color-orange;
+        @include transition2s;
+
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+
+        &:hover {
+          background: $color-orange-dark;
+        }
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &__admin {
+    width: 70%;
+
+    .addRecord {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      color: #fff;
+      background: $color-orange;
+      font-size: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include dashBoxShadow;
+      position: fixed;
+      right: 1rem;
+      bottom: 3.5rem;
+    }
+
+    .monitoring {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+
+      .staffDetails,
+      .recordDetails {
+        background: #fff;
+        width: calc(100% - 4rem);
+        @include dashBoxShadow;
+      }
+
+      .staffDetails {
+        margin-right: 4rem;
+
+        &__user {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem;
+          // background: red;
+
+          &:not(:last-child) {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(black, 0.1);
+          }
+
+          div {
+            margin-right: 0.5rem;
+          }
+
+          &-img {
+            height: 6.5rem;
+            width: 6.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            // background: green;
+
+            img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          &-del {
+            color: $color-orange;
+            @include transition2s;
+            font-size: 1.5rem;
+
+            &:hover {
+              color: $color-orange-dark;
+            }
+          }
+        }
+      }
+
+      .recordDetails {
+        align-self: flex-start;
+
+        &__rec {
+          height: 6.5rem;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem;
+          // background: red;
+
+          &:not(:last-child) {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(black, 0.1);
+          }
+
+          div {
+            &:not(:last-child) {
+              margin-right: 0.5rem;
+            }
+          }
+
+          &-delete a {
+            color: $color-orange;
+            @include transition2s;
+
+            &:first-child {
+              margin-right: 0.5rem;
+            }
+
+            &:hover {
+              color: $color-orange-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__admin-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7rem;
+    font-weight: 100;
+
+    div {
+      background: #fff;
+      height: 20rem;
+      width: 30rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      @include dashBoxShadow;
+
+      h3 {
+        font-weight: 400;
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.records {
+  width: 100%;
+  height: 100vh;
+  background: rgba(black, 0.9);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  @include transition2s;
+
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .content {
+    width: 60rem;
+    margin: 0 auto;
+    background: #fff;
+    padding: 1rem;
+
+    .rec {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 2rem;
+
+      input,
+      select {
+        height: 3.5rem;
+        padding: 0 0.5rem;
+        border: 1px solid rgba(black, 0.5);
+        @include transition2s;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-orange;
+        }
+      }
+    }
+  }
+
+  &__identify,
+  &__date,
+  .loc,
+  .dis {
+    width: calc(100% - 2rem);
+  }
+
+  .loc {
+    margin-right: 2rem;
+  }
+
+  .report {
+    width: 100%;
+    resize: none;
+    height: 10rem;
+    padding: 0 0.5rem;
+    border: 1px solid rgba(black, 0.5);
+    margin-bottom: 2rem;
+    @include transition2s;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $color-orange;
+    }
+  }
+
+  .butt {
+    text-align: right;
+
+    .add,
+    .exit {
+      padding: 0.5rem;
+      color: #fff;
+      @include transition2s;
+
+      &:hover {
+        background: $color-orange-dark;
+      }
+    }
+
+    .exit {
+      margin-right: 1rem;
+    }
+  }
+
+  &__identify {
+    display: flex;
+    margin-right: 2rem;
+
+    .rnum {
+      width: 40%;
+      margin-right: 1rem;
+    }
+
+    .uid {
+      width: 60%;
+    }
+  }
+
+  &__date {
+    display: flex;
+
+    select {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+// signin.html
+.sign {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+      to right bottom,
+      rgba($color-orange-dark, 0.2),
+      rgba($color-orange, 0.2)
+    ),
+    url("/img/background.jpg");
+  background-position: center center;
+  background-size: cover;
+
+  &__form {
+    background: rgba($color-primary, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    width: $form-width;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 2.5rem;
+    height: 30rem;
+    box-shadow: $form-shadow;
+
+    &--content {
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+
+      label {
+        display: block;
+        font-size: 2rem;
+        text-transform: capitalize;
+      }
+
+      input {
+        width: 100%;
+        height: 3.5rem;
+        padding: 1.5rem;
+        @include transition5s;
+        border: none;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-orange;
+        }
+      }
+
+      .form__signin {
+        width: 100%;
+        height: 3.5rem;
+        position: relative;
+        margin-top: 1rem;
+
+        a {
+          height: 100%;
+          padding: 0.5rem;
+          color: $color-primary;
+          position: absolute;
+          right: 0;
+          @include transition5s;
+
+          &:hover {
+            background: $color-orange-dark;
+          }
+        }
+      }
+
+      .notice {
+        text-align: center;
+      }
+    }
+  }
+}
+
+// Register.html
+.register {
+  background: url("/img/background2.jpg");
+  background-position: center center;
+  background-size: cover;
+  min-height: 100vh;
+
+  &__form {
+    background: rgba($color-primary, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    width: $form-width;
+    min-height: 30rem;
+    margin: 0 auto;
+    padding: 2.5rem;
+    position: relative;
+    top: 18rem;
+    box-shadow: $form-shadow;
+
+    &--content {
+      margin-top: 3rem;
+      .name,
+      .info,
+      .pass,
+      .contact {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .profile {
+        background: green;
+        position: absolute;
+        width: 10.5rem;
+        height: 10.5rem;
+        border-radius: 50%;
+        top: -5rem;
+        left: 50%;
+        transform: translate(-50%, 0);
+        overflow: hidden;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .half {
+        width: 50%;
+
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+      }
+
+      label {
+        text-transform: capitalize;
+        font-size: 1rem;
+      }
+
+      input,
+      select {
+        display: block;
+        width: 100%;
+        height: 3.5rem;
+        padding: 0 1.5rem;
+        border: none;
+        @include transition5s;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-orange;
+        }
+      }
+
+      .form__register {
+        width: 100%;
+        height: 3.5rem;
+        position: relative;
+        margin-top: 1rem;
+
+        a {
+          height: 100%;
+          padding: 0.5rem;
+          color: $color-primary;
+          position: absolute;
+          right: 0;
+          @include transition5s;
+
+          &:hover {
+            background: $color-orange-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+// REPORTS.HTML
+.admin__reports{
+
+  &-view,&-title{
+    display: grid;
+    grid-template-columns: repeat(6,calc(110rem/6));
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+
+    &:nth-child(even){
+      background: $color-primary;
+    }
+
+    &--COD,&--location{
+      text-transform: capitalize;
+    }
+
+    &--operations{
+      color: $color-orange;
+
+      i{
+        cursor: pointer;
+        @include transition2s;
+
+        &:hover{
+          color: $color-orange-dark;
+        }
+      }
+
+
+      i:not(:last-child){
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &-view:last-child{
+    margin-bottom: 2rem;
+  }
+
+  &-title{
+    background: $color-orange;
+    color: $color-primary;
+
+    h3{
+      text-transform: capitalize;
+      font-weight: 500;
+    }
+  }
+
+  .search{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    color: #fff;
+    background: $color-orange;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include dashBoxShadow;
+    position: fixed;
+    right: 1rem;
+    bottom: 3.5rem;
+  }
+}
+
+// STAFFS.HTML
+.admin__staffs{
+  &-view,&-title{
+    display: grid;
+    grid-template-columns: repeat(9,calc(100%/9));
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+
+    &:nth-child(even){
+      background: $color-primary;
+    }
+
+    &--COD,&--location{
+      text-transform: capitalize;
+    }
+
+    &--operations{
+      color: $color-orange;
+
+      i{
+        cursor: pointer;
+        @include transition2s;
+
+        &:hover{
+          color: $color-orange-dark;
+        }
+      }
+
+
+      i:not(:last-child){
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &-view{
+    font-size: 1.2rem;
+    &--img{
+      height: 5rem;
+      width: 5rem;
+      background: red;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &:last-child{
+      margin-bottom: 2rem;
+    }
+  }
+
+  &-title{
+    background: $color-orange;
+    color: $color-primary;
+    margin-bottom: 2rem;
+    
+    h3{
+      text-transform: capitalize;
+      font-weight: 500;
+    }
+  }
+
+  .search{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    color: #fff;
+    background: $color-orange;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include dashBoxShadow;
+    position: fixed;
+    right: 1rem;
+    bottom: 3.5rem;
+  }
+}

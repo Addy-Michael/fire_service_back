@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$color-bg: #f4f4f4;
+$color-primary: #fff;
+
+$color-orange: #c83c12;
+$color-orange-dark: #af2e07;
+$color-black: #282727;
+$color-gray: #899b8d;
+
+$form-width: 50rem;
+$form-shadow: 5px 5px 20px 2px #000000;
+
+@mixin transition5s {
+  transition: all 0.5s;
+}
+
+@mixin transition2s {
+  transition: all 0.2s;
+}
+
+@mixin headerStyle {
+  background: $color-black;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+@mixin headerNavStyle {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin headerH1Style {
+  color: $color-orange;
+      font-size: 4rem;
+}
+
+@mixin headerNavList {
+  list-style: none;
+  display: flex;
+}
+
+@mixin  headerProfilePic {
+  margin-right: 1rem;
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@mixin dashBoxShadow {
+  box-shadow: 0 0.4rem 1rem rgba(black, .5);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  font-size: 1.5rem;
+  background: $color-bg;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+
+  &--outline-orange{
+    border: 1px solid $color-orange;
+  }
+
+  &--orange {
+    background: $color-orange;
+  }
+}
+
+.container {
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+.m-heading {
+  font-size: 5rem;
+  text-transform: capitalize;
+  font-weight: 200;
+}
+
+.oH {
+  color: $color-orange-dark;
+}
+
+.h-gray{
+  color: $color-gray;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.query{
+  height: 14vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
+  input,
+  select,
+  button{
+    height: 3.5rem;
+    padding: 0 1rem;
+    border: none;
+    border: 1px solid $color-orange;
+  }
+
+  button{
+    cursor: pointer;
+    background: transparent;
+    @include transition2s;
+
+    &:hover{
+      background: $color-orange;
+      border: none;
+      color: $color-primary;
+    }
+  }
+}
+
+.stickyTitle{
+  position: sticky;
+  top: 0;
+}
