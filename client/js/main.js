@@ -13,7 +13,7 @@ class Records {
     return resData;
   }
 
-  async getRecordById(ur) {
+  async getRecordById(url) {
     const response = await fetch(url);
     const resData = await response.json();
     return resData;
@@ -26,6 +26,12 @@ class Records {
   }
 
   async getRecordByYear(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
+  async getRecordByMonthAndYear(url) {
     const response = await fetch(url);
     const resData = await response.json();
     return resData;
@@ -56,12 +62,18 @@ class Records {
   }
 
   async deleteRecord(url) {
-    await fetch(url);
+    await fetch(url, { method: "DELETE" });
   }
 }
 
 class Users {
   async getUser(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
+  async getUsers(url) {
     const response = await fetch(url);
     const resData = await response.json();
     return resData;
@@ -162,6 +174,62 @@ class UI {
     } while (yr != 1999);
     domOutput.innerHTML = output;
   }
+
+  //   load records contents to dom
+  loadReportContent(output, record, insertContent) {
+    const div = document.createElement("div");
+    div.className = "admin__reports-view";
+    output = `
+                      <div class="admin__reports-view--num reportId">
+                          ${record.reportID}
+                      </div>
+                      <div class="admin__reports-view--livesAffected">
+                          ${record.livesAffected}
+                      </div>
+                      <div class="admin__reports-view--COD">
+                          ${record.causeOfDiaster}
+                      </div>
+                      <div class="admin__reports-view--location">
+                          ${record.location}
+                      </div>
+                      <div class="admin__reports-view--DOD">
+                          ${record.dayNum} - ${record.month} - ${record.month}
+                      </div>
+                      <div class="admin__reports-view--operations">
+                          <i class="fas fa-eye"></i>
+                          <i class="fas fa-edit"></i>
+                          <i class="fas fa-trash-alt delReport"></i>
+                      </div>
+                  `;
+    div.innerHTML = output;
+    insertContent.appendChild(div);
+  }
+
+  // Load users to dom
+  loadUserContent(output, user, insertContent) {
+    const div = document.createElement("div");
+    let date = new Date(user.dob).toISOString();
+    div.className = "admin__staffs-view ";
+    output = `
+              <div class="admin__staffs-view--img">
+                <!-- img -->
+              </div>
+              <div class="admin__staffs-view--userID uid">${user.staffID}</div>
+              <div class="admin__staffs-view--fName">${user.firstname}</div>
+              <div class="admin__staffs-view--lname">${user.surname}</div>
+              <div class="admin__staffs-view--gen">${user.gender}</div>
+              <div class="admin__staffs-view--email">${user.email}</div>
+              <div class="admin__staffs-view--contact">${user.contact}</div>
+              <div class="admin__staffs-view--DOB">${date}</div>
+              <div class="admin__staffs-view--operations">
+                <i class="fas fa-eye"></i>
+                <i class="fas fa-edit"></i>
+                <i class="fas fa-trash-alt delUser"></i>
+              </div>
+            `;
+    div.innerHTML = output;
+    insertContent.appendChild(div);
+  }
 }
 
 const days = [
@@ -174,18 +242,18 @@ const days = [
   "Sunday",
 ];
 const months = [
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const ui = new UI();

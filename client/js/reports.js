@@ -15,35 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ui.datalistYear(dl_years);
 
   // Get All Records
-  records.getAllRecords("http://127.0.0.1:3000/api/v1/records").then((data) => {
+  records.getAllRecords("/api/v1/records").then((data) => {
     let output = "";
     data.records.forEach((record) => {
-      const div = document.createElement("div");
-      div.className = "admin__reports-view";
-      output = `
-                        <div class="admin__reports-view--num">
-                            ${record.reportID}
-                        </div>
-                        <div class="admin__reports-view--livesAffected">
-                            ${record.livesAffected}
-                        </div>
-                        <div class="admin__reports-view--COD">
-                            ${record.causeOfDiaster}
-                        </div>
-                        <div class="admin__reports-view--location">
-                            ${record.location}
-                        </div>
-                        <div class="admin__reports-view--DOD">
-                            ${record.dayNum} - ${record.month} - ${record.month}
-                        </div>
-                        <div class="admin__reports-view--operations">
-                            <i class="fas fa-eye"></i>
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-                    `;
-      div.innerHTML = output;
-      contents.appendChild(div);
+      ui.loadReportContent(output, record, contents);
     });
   });
 });
@@ -55,16 +30,50 @@ searchRecords.addEventListener("click", () => {
     reportMonth.value !== "" &&
     reportYear.value !== ""
   ) {
-    console.log("Sorry cannot search data with all fields filled");
-  } else if (reportMonth.value !== "") {
-    console.log("search month");
+    console.log(
+      "Sorry, can search information with specifying the repod id or the month and year"
+    );
   } else if (reportMonth.value !== "" && reportYear.value !== "") {
-    console.log("search data with month and year");
+    records
+      .getRecordByMonthAndYear(
+        `/api/v1/records/month&year/${reportMonth.value}/${reportYear.value}`
+      )
+      .then((data) => {
+        let output = "";
+        contents.innerHTML = "";
+        data.records.forEach((record) => {
+          ui.loadReportContent(output, record, contents);
+        });
+      });
   } else if (reportYear.value !== "") {
-    console.log("search data with year");
+    records
+      .getRecordByYear(`/api/v1/records/year/${reportYear.value}`)
+      .then((data) => {
+        let output = "";
+        contents.innerHTML = "";
+        data.records.forEach((record) => {
+          ui.loadReportContent(output, record, contents);
+        });
+      });
   } else if (reportId.value !== "") {
-    console.log("search with report id");
+    records.getRecordById(`/api/v1/records/${reportId.value}`).then((data) => {
+      let output = "";
+      contents.innerHTML = "";
+      ui.loadReportContent(output, data.record, contents);
+    });
+  } else if (reportMonth.value !== "") {
+    console.log("Sorry, specify the month and year to search");
   } else {
     console.log("please fill form to search");
+  }
+});
+
+contents.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delReport")) {
+    const id = e.target.parentElement.parentElement
+      .querySelector(".reportId")
+      .textContent.trim();
+    records.deleteRecord(`/api/v1/records/${id}`);
+    window.location.reload();
   }
 });
