@@ -4,7 +4,13 @@ const getDay = document.querySelector(".dash-day"),
   getYear = document.querySelector(".dash-year"),
   totalRecord = document.querySelector(".totalRecord"),
   lastestRecords = document.querySelector(".recordDetails"),
-  role = document.querySelector(".role");
+  role = document.querySelector(".role"),
+  addReport = document.querySelector(".add"),
+  loc = document.querySelector(".loc"),
+  cod = document.querySelector(".dis"),
+  report = document.querySelector(".report"),
+  reportID = document.querySelector(".rnum"),
+  livesAffected = document.querySelector(".uid");
 
 document.addEventListener("DOMContentLoaded", () => {
   ui.loadYearToDom(getYear);
@@ -47,5 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       window.location.href = "/dashboard.html";
     }
+  });
+});
+
+// Add report
+addReport.addEventListener("click", () => {
+  const data = {
+    location: loc.value,
+    reportID: reportID.value,
+    livesAffected: livesAffected.value,
+    causeOfDiaster: cod.value,
+    day: getDay.value,
+    month: getMonth.value,
+    dayNum: getDate.value,
+    year: getYear.value,
+  };
+
+  console.log(data);
+
+  records.addRecord("/api/v1/records/", data).then((record) => {
+    console.log(record);
   });
 });

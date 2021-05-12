@@ -31,7 +31,7 @@ class Records {
     return resData;
   }
 
-  async editRecord(url, data) {
+  async addRecord(url, data) {
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -43,10 +43,20 @@ class Records {
     return resData;
   }
 
-  async deleteRecord(url) {
-    const response = await fetch(url);
+  async editRecord(url, data) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
     const resData = await response.json();
     return resData;
+  }
+
+  async deleteRecord(url) {
+    await fetch(url);
   }
 }
 
@@ -55,6 +65,36 @@ class Users {
     const response = await fetch(url);
     const resData = await response.json();
     return resData;
+  }
+
+  async registerUser(url, data) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await response.json();
+    return resData;
+  }
+
+  async updateUser(url, data) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await response.json();
+    return resData;
+  }
+
+  async deleteUser(url) {
+    await fetch(url, {
+      method: "DELETE",
+    });
   }
 }
 
@@ -112,6 +152,16 @@ class UI {
     });
     domOutput.innerHTML = output;
   }
+
+  datalistYear(domOutput) {
+    let yr = new Date().getFullYear();
+    let output;
+    do {
+      output += `<option value=${yr}>`;
+      yr--;
+    } while (yr != 1999);
+    domOutput.innerHTML = output;
+  }
 }
 
 const days = [
@@ -124,18 +174,18 @@ const days = [
   "Sunday",
 ];
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
 ];
 
 const ui = new UI();
