@@ -24,20 +24,19 @@ app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "client")));
 app.use("/css", express.static(path.resolve(__dirname, "client", "css")));
 app.use("/img", express.static(path.resolve(__dirname, "client", "img")));
+app.use(
+  "/img/users",
+  express.static(path.resolve(__dirname, "client", "img", "users"))
+);
 app.use("/js", express.static(path.resolve(__dirname, "client", "js")));
 
 // setting routes
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/records", recordRoute);
-// app.use('/firefighters',viewRoute);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/fire_service_front/index.html");
 });
-
-// app.get('/login',(req,res) => {
-//     res.sendFile(__dirname + '/fire_service_front/signin.html');
-// });
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

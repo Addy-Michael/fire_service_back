@@ -10,11 +10,16 @@ const AppError = require("../utils/appError");
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/img/users");
+    cb(null, "client/img/users");
   },
   filename: (req, file, cb) => {
     const ext = file.mimetype.split("/")[1];
-    cb(null, `user-userID-${Date.now()}.${ext}`);
+    cb(
+      null,
+      `${req.user.firstname}-${req.user.surname}-${
+        req.user.staffID
+      }-${Date.now()}.${ext}`
+    );
   },
 });
 
@@ -22,7 +27,7 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb("Accepts only images", false);
+    cb(new AppError("Accpects only images", 404), false);
   }
 };
 
@@ -32,6 +37,7 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
+// image route
 exports.uploadPhoto = upload.single("photo");
 
 const signToken = (id) => {
@@ -69,6 +75,7 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
+// Register users
 exports.signup = async (req, res) => {
   try {
     const newUser = await User.create(req.body);

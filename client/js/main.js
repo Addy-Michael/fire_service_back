@@ -94,10 +94,7 @@ class Users {
   async updateUser(url, data) {
     const response = await fetch(url, {
       method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+      body: data,
     });
     const resData = await response.json();
     return resData;

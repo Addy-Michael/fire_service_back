@@ -39,6 +39,8 @@ exports.deleteUser = async (req, res) => {
 // Update user
 exports.updateUser = async (req, res) => {
   try {
+    if (req.file) req.body.photo = req.file.filename;
+    console.log(req.file);
     const user = await User.findOneAndUpdate(
       { staffID: req.params.staff_id },
       req.body,

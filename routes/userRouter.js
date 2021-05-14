@@ -36,6 +36,10 @@ router
   .route("/:staff_id")
   .delete(userController.deleteUser)
   .get(userController.getUser)
-  .patch(userController.updateUser);
+  .patch(
+    authController.protect,
+    authController.uploadPhoto,
+    userController.updateUser
+  );
 
 module.exports = router;

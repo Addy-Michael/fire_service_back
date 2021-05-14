@@ -10,7 +10,8 @@ const getDay = document.querySelector(".dash-day"),
   cod = document.querySelector(".dis"),
   report = document.querySelector(".report"),
   reportID = document.querySelector(".rnum"),
-  livesAffected = document.querySelector(".uid");
+  livesAffected = document.querySelector(".uid"),
+  dashboardPicture = document.querySelector(".admin__img").querySelector("img");
 
 document.addEventListener("DOMContentLoaded", () => {
   ui.loadYearToDom(getYear);
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user.data) {
       console.log(user);
       role.textContent = user.data.role.toUpperCase();
+      dashboardPicture.src = `/img/users/${user.data.photo}`;
     } else {
       window.location.href = "/dashboard.html";
     }

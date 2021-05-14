@@ -7,7 +7,10 @@ const navEmail = document.querySelector(".userEmail"),
   role = document.querySelector("#user-role"),
   gender = document.querySelector("#gen"),
   updateProfile = document.querySelector(".updateProfile"),
-  deleteProfile = document.querySelector(".delProfile");
+  deleteProfile = document.querySelector(".delProfile"),
+  img_input = document.querySelector(".img_inputs"),
+  image = document.querySelector(".user__form-picture").querySelector("img"),
+  navPicture = document.querySelector(".profilePicture").querySelector("img");
 
 let staffID;
 
@@ -29,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tel.value = user.data.contact;
       //   dob.value = new Date(user.data.dob).toISOString();
       gender.value = user.data.gender;
+      image.src = `/img/users/${user.data.photo}`;
+      navPicture.src = `/img/users/${user.data.photo}`;
       role.value = user.data.role;
       staffID = user.data.staffID;
     } else {
@@ -37,15 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-updateProfile.addEventListener("click", () => {
-  const data = {
-    firstname: firstName.value,
-    surname: lastName.value,
-    contact: tel.value,
-  };
+updateProfile.addEventListener("click", (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("firstname", firstName.value);
+  formData.append("surname", lastName.value);
+  formData.append("contact", tel.value);
+  formData.append("photo", img_input.files[0]);
 
   user
-    .updateUser(`/api/v1/users/${staffID}`, data)
+    .updateUser(`/api/v1/users/${staffID}`, formData)
     .then(() => window.location.reload());
 });
 
