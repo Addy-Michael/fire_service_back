@@ -48,7 +48,7 @@ updateProfile.addEventListener("click", (e) => {
   formData.append("firstname", firstName.value);
   formData.append("surname", lastName.value);
   formData.append("contact", tel.value);
-  formData.append("photo", img_input.files[0]);
+  if (img_input.value !== "") formData.append("photo", img_input.files[0]);
 
   user
     .updateUser(`/api/v1/users/${staffID}`, formData)
