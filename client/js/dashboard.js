@@ -11,7 +11,8 @@ const getDay = document.querySelector(".dash-day"),
   report = document.querySelector(".report"),
   reportID = document.querySelector(".rnum"),
   livesAffected = document.querySelector(".uid"),
-  dashboardPicture = document.querySelector(".admin__img").querySelector("img");
+  dashboardPicture = document.querySelector(".admin__img").querySelector("img"),
+  signOut = document.querySelector(".logout");
 
 document.addEventListener("DOMContentLoaded", () => {
   ui.loadYearToDom(getYear);
@@ -49,11 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // get user
   user.getUser("api/v1/users/user").then((user) => {
     if (user.data) {
-      console.log(user);
       role.textContent = user.data.role.toUpperCase();
       dashboardPicture.src = `/img/users/${user.data.photo}`;
     } else {
-      window.location.href = "/dashboard.html";
+      window.location.href = "/index.html";
     }
   });
 });
@@ -76,4 +76,18 @@ addReport.addEventListener("click", () => {
   records.addRecord("/api/v1/records/", data).then((record) => {
     console.log(record);
   });
+});
+
+// Log out
+signOut.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  auth
+    .logout("/api/v1/users/logout")
+    .then((res) => console.log(res))
+    .then(
+      setTimeout(() => {
+        window.location.href = "/index.html";
+      }, 5 * 1000)
+    );
 });

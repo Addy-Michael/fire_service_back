@@ -162,6 +162,10 @@
 }
 
 .user {
+  &__alert {
+    margin-bottom: 2.5rem;
+  }
+
   &__form {
     width: 60rem;
     margin: 4rem auto;
@@ -189,7 +193,8 @@
     }
 
     .image {
-      display: none;
+      // display: none;
+      opacity: 0;
     }
 
     .img__open {
@@ -239,15 +244,15 @@
         color: #fff;
         @include transition2s;
 
-        &:hover{
+        &:hover {
           background: $color-orange-dark;
         }
       }
 
-      .updateProfile{
+      .updateProfile {
         color: $color-orange;
 
-        &:hover{ 
+        &:hover {
           color: $color-primary;
         }
       }
@@ -581,6 +586,10 @@
         }
       }
     }
+
+    .records__alert {
+      margin-bottom: 2rem;
+    }
   }
 
   &__identify,
@@ -754,7 +763,6 @@
     box-shadow: $form-shadow;
 
     &--content {
-      margin-top: 3rem;
       .name,
       .info,
       .pass,
@@ -762,25 +770,6 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-      }
-
-      .profile {
-        background: green;
-        position: absolute;
-        width: 10.5rem;
-        height: 10.5rem;
-        border-radius: 50%;
-        top: -5rem;
-        left: 50%;
-        transform: translate(-50%, 0);
-        overflow: hidden;
-
-        img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
       }
 
       .half {
@@ -835,58 +824,58 @@
 }
 
 // REPORTS.HTML
-.admin__reports{
-
-  &-view,&-title{
+.admin__reports {
+  &-view,
+  &-title {
     display: grid;
-    grid-template-columns: repeat(6,calc(110rem/6));
+    grid-template-columns: repeat(6, calc(110rem / 6));
     align-items: center;
     justify-items: center;
     justify-content: space-between;
     padding: 2rem 0;
 
-    &:nth-child(even){
+    &:nth-child(even) {
       background: $color-primary;
     }
 
-    &--COD,&--location{
+    &--COD,
+    &--location {
       text-transform: capitalize;
     }
 
-    &--operations{
+    &--operations {
       color: $color-orange;
 
-      i{
+      i {
         cursor: pointer;
         @include transition2s;
 
-        &:hover{
+        &:hover {
           color: $color-orange-dark;
         }
       }
 
-
-      i:not(:last-child){
+      i:not(:last-child) {
         margin-right: 0.5rem;
       }
     }
   }
 
-  &-view:last-child{
+  &-view:last-child {
     margin-bottom: 2rem;
   }
 
-  &-title{
+  &-title {
     background: $color-orange;
     color: $color-primary;
 
-    h3{
+    h3 {
       text-transform: capitalize;
       font-weight: 500;
     }
   }
 
-  .search{
+  .search {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
@@ -904,75 +893,76 @@
 }
 
 // STAFFS.HTML
-.admin__staffs{
-  &-view,&-title{
+.admin__staffs {
+  &-view,
+  &-title {
     display: grid;
-    grid-template-columns: repeat(9,calc(100%/9));
+    grid-template-columns: repeat(9, calc(100% / 9));
     align-items: center;
     justify-items: center;
     justify-content: space-between;
     padding: 2rem 0;
 
-    &:nth-child(even){
+    &:nth-child(even) {
       background: $color-primary;
     }
 
-    &--COD,&--location{
+    &--COD,
+    &--location {
       text-transform: capitalize;
     }
 
-    &--operations{
+    &--operations {
       color: $color-orange;
 
-      i{
+      i {
         cursor: pointer;
         @include transition2s;
 
-        &:hover{
+        &:hover {
           color: $color-orange-dark;
         }
       }
 
-
-      i:not(:last-child){
+      i:not(:last-child) {
         margin-right: 0.5rem;
       }
     }
   }
 
-  &-view{
+  &-view {
     font-size: 1.2rem;
-    &--img{
+    &--img {
       height: 5rem;
       width: 5rem;
       background: red;
       border-radius: 50%;
       overflow: hidden;
 
-      img{
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
 
-    &:last-child{
+    &:last-child {
       margin-bottom: 2rem;
     }
   }
 
-  &-title{
+  &-title {
     background: $color-orange;
     color: $color-primary;
     margin-bottom: 2rem;
-    
-    h3{
+
+    h3 {
       text-transform: capitalize;
       font-weight: 500;
     }
   }
 
-  .search{
+  .search {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;

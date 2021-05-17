@@ -17,16 +17,12 @@ router.route("/user").get(authController.getUser);
 
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
+router.get("/logout", authController.logout);
 
 router.patch(
   "/updateMypassword",
   authController.protect,
   authController.updatePassword
-);
-router.patch(
-  "/image/:img",
-  authController.uploadPhoto,
-  authController.imageUpload
 );
 
 router.post("/forget", authController.forgetPassword);
@@ -39,6 +35,7 @@ router
   .patch(
     authController.protect,
     authController.uploadPhoto,
+    authController.resizePhoto,
     userController.updateUser
   );
 

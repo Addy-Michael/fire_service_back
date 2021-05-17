@@ -10,16 +10,17 @@ const navEmail = document.querySelector(".userEmail"),
   deleteProfile = document.querySelector(".delProfile"),
   img_input = document.querySelector(".img_inputs"),
   image = document.querySelector(".user__form-picture").querySelector("img"),
-  navPicture = document.querySelector(".profilePicture").querySelector("img");
+  navPicture = document.querySelector(".profilePicture").querySelector("img"),
+  signOut = document.querySelector(".fa-sign-out-alt"),
+  formContent = document.querySelector(".user__form"),
+  imageContainer = formContent.querySelector(".user__form-picture");
 
 let staffID;
 
 document.addEventListener("DOMContentLoaded", () => {
   // disable buttons
   gender.disabled = true;
-  dob.disabled = true;
   role.disabled = true;
-  mail.disabled = true;
 
   //get user
   user.getUser("api/v1/users/user").then((user) => {
@@ -50,13 +51,53 @@ updateProfile.addEventListener("click", (e) => {
   formData.append("contact", tel.value);
   if (img_input.value !== "") formData.append("photo", img_input.files[0]);
 
-  user
-    .updateUser(`/api/v1/users/${staffID}`, formData)
-    .then(() => window.location.reload());
+  user.updateUser(`/api/v1/users/${staffID}`, formData).then(() => {
+    ui.alert(
+      "User account updated",
+      "alert__success",
+      imageContainer,
+      formContent
+    );
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+      window.location.reload();
+    }, 3000);
+  });
 });
 
 deleteProfile.addEventListener("click", () => {
-  user
-    .deleteUser(`/api/v1/users/${staffID}`)
-    .then(() => (window.location.href = "/signin.html"));
+  user.deleteUser(`/api/v1/users/${staffID}`).then(() => {
+    ui.alert(
+      "User account deleted",
+      "alert__success",
+      imageContainer,
+      formContent
+    );
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+      window.location.href = "/signin.html";
+    }, 3000);
+  });
+});
+
+signOut.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  auth
+    .logout("/api/v1/users/logout")
+    .then((res) => console.log(res))
+    .then(() => {
+      ui.alert(
+        "User logged out",
+        "alert__success",
+        imageContainer,
+        formContent
+      );
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+        window.location.href = "/index.html";
+      }, 5 * 1000);
+    });
 });

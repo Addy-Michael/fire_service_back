@@ -123,6 +123,18 @@ class Auth {
       return error;
     }
   }
+
+  async logout(url) {
+    try {
+      const response = await fetch(url);
+
+      const resData = await response.json();
+
+      return resData;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 class UI {
@@ -226,6 +238,15 @@ class UI {
             `;
     div.innerHTML = output;
     insertContent.appendChild(div);
+  }
+
+  // load alert
+  alert(msg, classname, output, parent) {
+    const div = document.createElement("div");
+    div.className = `alert ${classname}`;
+    const p = `<p class="alert__output">${msg}</p>`;
+    div.innerHTML = p;
+    parent.insertBefore(div, output);
   }
 }
 

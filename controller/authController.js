@@ -3,25 +3,28 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
+const sharp = require("sharp");
 const User = require("../models/userModel");
 const sendEmail = require("../utils/email");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("../utils/appError");
 
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "client/img/users");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(
-      null,
-      `${req.user.firstname}-${req.user.surname}-${
-        req.user.staffID
-      }-${Date.now()}.${ext}`
-    );
-  },
-});
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "client/img/users");
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     cb(
+//       null,
+//       `${req.user.firstname}-${req.user.surname}-${
+//         req.user.staffID
+//       }-${Date.now()}.${ext}`
+//     );
+//   },
+// });
+
+const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -39,6 +42,22 @@ const upload = multer({
 
 // image route
 exports.uploadPhoto = upload.single("photo");
+
+exports.resizePhoto = (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `${req.user.firstname}-${req.user.surname}-${
+    req.user.staffID
+  }-${Date.now()}.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`client/img/users/${req.file.filename}`);
+
+  next();
+};
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -100,12 +119,21 @@ exports.login = catchAsync(async (req, res, next) => {
   // checking if user and password exist
   user = await User.findOne({ email }).select("+password");
   if (!user || !(await bcrypt.compare(password, user.password))) {
-    return next(new AppError("Incorrect email and password", 401));
+    return next(new AppError("Incorrect email or password", 401));
   } else {
     // Sign in to token
     createSendToken(user, 201, res);
   }
 });
+
+exports.logout = (req, res) => {
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: "success", msg: "loggout user successful" });
+};
 
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
@@ -314,10 +342,3 @@ exports.updatePassword = async (req, res) => {
 //       }
 //     });
 //   });
-
-// image upload
-exports.imageUpload = (req, res, next) => {
-  res.status(200).json({
-    file: req.file,
-  });
-};

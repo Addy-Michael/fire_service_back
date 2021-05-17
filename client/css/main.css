@@ -85,6 +85,28 @@ body {
   top: 0;
 }
 
+.alert__danger {
+  text-align: center;
+  background: crimson;
+}
+
+.alert__danger .alert__output {
+  padding: 0.5rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.alert__success {
+  text-align: center;
+  background: forestgreen;
+}
+
+.alert__success .alert__output {
+  padding: 0.5rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
 /*index.html*/
 .header {
   background: #282727;
@@ -140,8 +162,7 @@ body {
   align-items: center;
 }
 
-.main .about__content-info,
-.main .about__content-img {
+.main .about__content-info, .main .about__content-img {
   width: 50%;
 }
 
@@ -265,6 +286,10 @@ body {
   font-size: 2.5rem;
 }
 
+.user__alert {
+  margin-bottom: 2.5rem;
+}
+
 .user__form {
   width: 60rem;
   margin: 4rem auto;
@@ -293,8 +318,7 @@ body {
 }
 
 .user__form .image {
-  /* display: inline-block; */
-  visibility: hidden;
+  opacity: 0;
 }
 
 .user__form .img__open {
@@ -306,26 +330,17 @@ body {
   color: #c83c12;
 }
 
-.user__form-name,
-.user__form-contact,
-.user__form-info,
-.user__form-pass {
+.user__form-name, .user__form-contact, .user__form-info, .user__form-pass {
   display: flex;
   width: 100%;
   margin-bottom: 2.5rem;
 }
 
-.user__form-name .half,
-.user__form-contact .half,
-.user__form-info .half,
-.user__form-pass .half {
+.user__form-name .half, .user__form-contact .half, .user__form-info .half, .user__form-pass .half {
   width: 50%;
 }
 
-.user__form-name .half:not(:last-child),
-.user__form-contact .half:not(:last-child),
-.user__form-info .half:not(:last-child),
-.user__form-pass .half:not(:last-child) {
+.user__form-name .half:not(:last-child), .user__form-contact .half:not(:last-child), .user__form-info .half:not(:last-child), .user__form-pass .half:not(:last-child) {
   margin-right: 2rem;
 }
 
@@ -688,8 +703,11 @@ body {
   border: 1px solid #c83c12;
 }
 
-.records__identify,
-.records__date,
+.records .content .records__alert {
+  margin-bottom: 2rem;
+}
+
+.records__identify, .records__date,
 .records .loc,
 .records .dis {
   width: calc(100% - 2rem);
@@ -763,12 +781,7 @@ body {
 .sign {
   height: 100vh;
   width: 100%;
-  background: linear-gradient(
-      to right bottom,
-      rgba(175, 46, 7, 0.2),
-      rgba(200, 60, 18, 0.2)
-    ),
-    url("/img/background.jpg");
+  background: linear-gradient(to right bottom, rgba(175, 46, 7, 0.2), rgba(200, 60, 18, 0.2)), url("/img/background.jpg");
   background-position: center center;
   background-size: cover;
 }
@@ -858,10 +871,6 @@ body {
   box-shadow: 5px 5px 20px 2px #000000;
 }
 
-.register__form--content {
-  margin-top: 3rem;
-}
-
 .register__form--content .name,
 .register__form--content .info,
 .register__form--content .pass,
@@ -869,25 +878,6 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.register__form--content .profile {
-  background: green;
-  position: absolute;
-  width: 10.5rem;
-  height: 10.5rem;
-  border-radius: 50%;
-  top: -5rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  overflow: hidden;
-}
-
-.register__form--content .profile img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .register__form--content .half {
@@ -939,8 +929,7 @@ body {
   background: #af2e07;
 }
 
-.admin__reports-view,
-.admin__reports-title {
+.admin__reports-view, .admin__reports-title {
   display: grid;
   grid-template-columns: repeat(6, calc(110rem / 6));
   align-items: center;
@@ -949,36 +938,28 @@ body {
   padding: 2rem 0;
 }
 
-.admin__reports-view:nth-child(even),
-.admin__reports-title:nth-child(even) {
+.admin__reports-view:nth-child(even), .admin__reports-title:nth-child(even) {
   background: #fff;
 }
 
-.admin__reports-view--COD,
-.admin__reports-view--location,
-.admin__reports-title--COD,
-.admin__reports-title--location {
+.admin__reports-view--COD, .admin__reports-view--location, .admin__reports-title--COD, .admin__reports-title--location {
   text-transform: capitalize;
 }
 
-.admin__reports-view--operations,
-.admin__reports-title--operations {
+.admin__reports-view--operations, .admin__reports-title--operations {
   color: #c83c12;
 }
 
-.admin__reports-view--operations i,
-.admin__reports-title--operations i {
+.admin__reports-view--operations i, .admin__reports-title--operations i {
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.admin__reports-view--operations i:hover,
-.admin__reports-title--operations i:hover {
+.admin__reports-view--operations i:hover, .admin__reports-title--operations i:hover {
   color: #af2e07;
 }
 
-.admin__reports-view--operations i:not(:last-child),
-.admin__reports-title--operations i:not(:last-child) {
+.admin__reports-view--operations i:not(:last-child), .admin__reports-title--operations i:not(:last-child) {
   margin-right: 0.5rem;
 }
 
@@ -1012,8 +993,7 @@ body {
   bottom: 3.5rem;
 }
 
-.admin__staffs-view,
-.admin__staffs-title {
+.admin__staffs-view, .admin__staffs-title {
   display: grid;
   grid-template-columns: repeat(9, calc(100% / 9));
   align-items: center;
@@ -1022,36 +1002,28 @@ body {
   padding: 2rem 0;
 }
 
-.admin__staffs-view:nth-child(even),
-.admin__staffs-title:nth-child(even) {
+.admin__staffs-view:nth-child(even), .admin__staffs-title:nth-child(even) {
   background: #fff;
 }
 
-.admin__staffs-view--COD,
-.admin__staffs-view--location,
-.admin__staffs-title--COD,
-.admin__staffs-title--location {
+.admin__staffs-view--COD, .admin__staffs-view--location, .admin__staffs-title--COD, .admin__staffs-title--location {
   text-transform: capitalize;
 }
 
-.admin__staffs-view--operations,
-.admin__staffs-title--operations {
+.admin__staffs-view--operations, .admin__staffs-title--operations {
   color: #c83c12;
 }
 
-.admin__staffs-view--operations i,
-.admin__staffs-title--operations i {
+.admin__staffs-view--operations i, .admin__staffs-title--operations i {
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.admin__staffs-view--operations i:hover,
-.admin__staffs-title--operations i:hover {
+.admin__staffs-view--operations i:hover, .admin__staffs-title--operations i:hover {
   color: #af2e07;
 }
 
-.admin__staffs-view--operations i:not(:last-child),
-.admin__staffs-title--operations i:not(:last-child) {
+.admin__staffs-view--operations i:not(:last-child), .admin__staffs-title--operations i:not(:last-child) {
   margin-right: 0.5rem;
 }
 

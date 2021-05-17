@@ -6,9 +6,16 @@ const firstName = document.querySelector("#fname"),
   gen = document.querySelector("#gen"),
   password = document.querySelector("#password"),
   confirmPass = document.querySelector("#confirmPass"),
-  signUp = document.querySelector(".signUp");
+  signUp = document.querySelector(".signUp"),
+  formContent = document.querySelector(".register__form--content"),
+  formName = formContent.querySelector(".name");
 
 signUp.addEventListener("click", () => {
+  const initial =
+    firstName.value.substring(0, 1).toUpperCase() +
+    lastName.value.substring(0, 1).toUpperCase();
+  const randNum = Math.ceil(Math.random() * 500 + 1);
+
   const data = {
     firstname: firstName.value,
     surname: lastName.value,
@@ -17,16 +24,40 @@ signUp.addEventListener("click", () => {
     gender: gen.value,
     password: password.value,
     confirmPassword: confirmPass.value,
-    staffID: "B06",
+    staffID: initial + randNum,
     role: "admin",
     contact: tel.value,
   };
 
   user.registerUser("/api/v1/users/signup", data).then((user) => {
     if (user.status === "successful") {
-      window.location.href = "/dashboard.html";
+      ui.alert("User account created", "alert__success", formName, formContent);
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+        window.location.href = "/dashboard.html";
+      }, 3000);
     } else {
-      console.log(user);
+      if (user.status === "failed" && user.error.code === 11000) {
+        ui.alert("Email already exist", "alert__danger", formName, formContent);
+
+        setTimeout(() => {
+          document.querySelector(".alert").remove();
+        }, 3000);
+      } else if (
+        user.status === "failed" &&
+        user.error.name === "ValidationError"
+      ) {
+        ui.alert(
+          "Please fill all fields",
+          "alert__danger",
+          formName,
+          formContent
+        );
+        setTimeout(() => {
+          document.querySelector(".alert").remove();
+        }, 3000);
+      }
     }
   });
 });
