@@ -12,7 +12,9 @@ const getDay = document.querySelector(".dash-day"),
   reportID = document.querySelector(".rnum"),
   livesAffected = document.querySelector(".uid"),
   dashboardPicture = document.querySelector(".admin__img").querySelector("img"),
-  signOut = document.querySelector(".logout");
+  signOut = document.querySelector(".logout"),
+  addRecord = document.querySelector(".records").querySelector(".content"),
+  rec = addRecord.querySelector(".rec");
 
 document.addEventListener("DOMContentLoaded", () => {
   ui.loadYearToDom(getYear);
@@ -59,23 +61,46 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Add report
-addReport.addEventListener("click", () => {
-  const data = {
-    location: loc.value,
-    reportID: reportID.value,
-    livesAffected: livesAffected.value,
-    causeOfDiaster: cod.value,
-    day: getDay.value,
-    month: getMonth.value,
-    dayNum: getDate.value,
-    year: getYear.value,
-  };
+addReport.addEventListener("click", (e) => {
+  e.preventDefault();
 
-  console.log(data);
+  if (
+    loc.value !== "" &&
+    reportID.value !== "" &&
+    livesAffected.value !== "" &&
+    cod.value !== "" &&
+    getDay.value !== "" &&
+    getMonth.value !== "" &&
+    getDate.value !== "" &&
+    getYear.value !== "" &&
+    report.value !== ""
+  ) {
+    const data = {
+      location: loc.value,
+      reportID: reportID.value,
+      livesAffected: livesAffected.value,
+      causeOfDiaster: cod.value,
+      day: getDay.value,
+      month: getMonth.value,
+      dayNum: getDate.value,
+      year: getYear.value,
+      report: report.value,
+    };
 
-  records.addRecord("/api/v1/records/", data).then((record) => {
-    console.log(record);
-  });
+    records.addRecord("/api/v1/records/", data).then((record) => {
+      ui.alert("Record added", "alert__success", rec, addRecord);
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 3000);
+    });
+  } else {
+    ui.alert("Please fill all fields", "alert__danger", rec, addRecord);
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+    }, 3000);
+  }
 });
 
 // Log out

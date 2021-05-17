@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: [true, "contact is require"],
   },
-  photo: { type: String, default: "default.jpeg" },
+  photo: { type: String, default: "profile.jpg" },
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
