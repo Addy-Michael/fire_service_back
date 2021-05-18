@@ -15,30 +15,20 @@
   </head>
   <body>
     <section class="admin__reports" id="top">
-      <div class="query">
-        <div class="container">
-          <input
-            type="text"
-            class="reportID"
-            placeholder="Enter report number"
-          />
-          <input
-            list="months"
-            class="reportMonth"
-            id="month"
-            placeholder="month"
-          />
-          <datalist id="months" class="dl_months">
-            <!-- <option value="January"> -->
-          </datalist>
-          <input list="years" class="reportYear" placeholder="year" />
-          <datalist id="years" class="dl_years">
-            <!-- < value="2021"> -->
-          </datalist>
-          <button type="submit" class="searchRecords btn--outline-orange">
-            Search Records
-          </button>
-        </div>
+      <div class="queryContain">
+        <!-- <div class="query">
+          <div class="container">
+            <input
+              type="text"
+              class="reportID"
+              placeholder="Enter report number"
+            />
+  
+            <button type="submit" class="searchRecords btn--outline-orange">
+              Search Records
+            </button>
+          </div>
+        </div> -->
       </div>
       <div class="content">
         <div class="admin__reports-title stickyTitle">
@@ -70,9 +60,17 @@
                     <i class="fas fa-trash-alt"></i>
                 </div>
             </div> -->
-        <a href="#top" class="btn search">
-          <i class="fas fa-search"></i>
-        </a>
+
+        <div class="search__functions">
+          <a href="#top" class="btn search">
+            <i href="#" class="fas fa-search"></i>
+          </a>
+          <div class="search__functions-list">
+            <a href="#" class="monthNyear search__func">Month and year</a>
+            <a href="#" class="year search__func">Get yearly reports</a>
+            <a href="#" class="id search__func">Get by report by id</a>
+          </div>
+        </div>
       </div>
     </section>
     <script src="/js/main.js"></script>

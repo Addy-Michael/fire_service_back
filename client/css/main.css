@@ -985,12 +985,41 @@ body {
   background: #c83c12;
   font-size: 3rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.admin__reports .search__functions {
+  cursor: pointer;
   position: fixed;
   right: 1rem;
   bottom: 3.5rem;
+}
+
+.admin__reports .search__functions-list {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 3.5rem;
+  right: 8rem;
+  opacity: 0;
+}
+
+.admin__reports .search__functions-list a {
+  text-decoration: none;
+  background: #c83c12;
+  padding: 0.5rem;
+  color: #fff;
+}
+
+.admin__reports .search__functions-list a:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.admin__reports .search ~ .search__functions-list.view {
+  opacity: 1;
 }
 
 .admin__staffs-view, .admin__staffs-title {
