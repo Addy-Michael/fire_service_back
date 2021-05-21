@@ -113,6 +113,6 @@ signOut.addEventListener("click", (e) => {
     .then(
       setTimeout(() => {
         window.location.href = "/index.html";
-      }, 5 * 1000)
+      }, 3 * 1000)
     );
 });

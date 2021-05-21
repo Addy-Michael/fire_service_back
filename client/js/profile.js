@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //get user
   user.getUser("api/v1/users/user").then((user) => {
     if (user.data) {
-      console.log(user);
       firstName.value = user.data.firstname;
       lastName.value = user.data.surname;
       navEmail.textContent = user.data.email;
@@ -98,6 +97,6 @@ signOut.addEventListener("click", (e) => {
       setTimeout(() => {
         document.querySelector(".alert").remove();
         window.location.href = "/index.html";
-      }, 5 * 1000);
+      }, 3 * 1000);
     });
 });

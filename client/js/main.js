@@ -202,7 +202,7 @@ class UI {
                           ${record.location}
                       </div>
                       <div class="admin__reports-view--DOD">
-                          ${record.dayNum} - ${record.month} - ${record.month}
+                          ${record.dayNum} - ${record.month} - ${record.year}
                       </div>
                       <div class="admin__reports-view--operations">
                           <i class="fas fa-eye"></i>
@@ -247,6 +247,14 @@ class UI {
     const p = `<p class="alert__output">${msg}</p>`;
     div.innerHTML = p;
     parent.insertBefore(div, output);
+  }
+
+  // clear search result
+  clearSearchResult(output) {
+    const div = document.createElement("div");
+    div.className = "clear";
+    div.innerHTML = `<a href="/reports.html" class="clear__btn">Clear</a>`;
+    output.append(div);
   }
 }
 

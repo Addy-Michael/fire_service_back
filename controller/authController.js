@@ -221,7 +221,7 @@ exports.getUser = catchAsync(async (req, res, next) => {
 exports.restrict = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return next(new AppError("You do not have permission", 401));
+      return next(new AppError("You do not have permission", 403));
     }
     next();
   };

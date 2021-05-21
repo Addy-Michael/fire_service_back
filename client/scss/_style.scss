@@ -992,6 +992,37 @@
   }
 
   .search {
+    &__functions {
+      cursor: pointer;
+      position: fixed;
+      right: 1rem;
+      bottom: 3.5rem;
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 3.5rem;
+        right: 8rem;
+        opacity: 0;
+
+        a {
+          text-decoration: none;
+          background: $color-orange;
+          padding: 0.5rem;
+          color: #fff;
+
+          &:not(:last-child) {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+
+    ~ .search__functions-list.view {
+      opacity: 1;
+    }
+
     width: 6rem;
     height: 6rem;
     border-radius: 50%;

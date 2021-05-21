@@ -1,12 +1,7 @@
-// const r_months = document.querySelector(".dl_months"),
 const years = document.querySelector(".reportYear"),
   reportTitle = document.querySelector(".stickyTitle"),
   contents = document.querySelector(".content"),
-  // dl_years = document.querySelector(".dl_years"),
   searchRecords = document.querySelector(".searchRecords"),
-  // reportId = document.querySelector(".reportID"),
-  // reportMonth = document.querySelector(".reportMonth"),
-  // reportYear = document.querySelector(".reportYear"),
   search = document.querySelector(".search"),
   listFunc = document.querySelector(".search__functions-list"),
   searchMonthYear = listFunc.querySelector(".monthNyear"),
@@ -17,8 +12,6 @@ const years = document.querySelector(".reportYear"),
 
 // when dom is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // ui.loadYearToDom(years);
-
   // Get All Records
   records.getAllRecords("/api/v1/records").then((data) => {
     let output = "";
@@ -36,8 +29,15 @@ queryContain.addEventListener("click", (e) => {
       records
         .getRecordByYear(`/api/v1/records/year/${reportYear.value}`)
         .then((data) => {
-          let output = "";
-          contents.innerHTML = `<div class="admin__reports-title stickyTitle">
+          if (data.status === "fail") {
+            ui.alert(data.message, "alert__danger", queryContain, adminReport);
+
+            setTimeout(() => {
+              document.querySelector(".alert").remove();
+            }, 3000);
+          } else {
+            let output = "";
+            contents.innerHTML = `<div class="admin__reports-title stickyTitle">
           <h3>Report ID</h3>
           <h3>Lives affected</h3>
           <h3>cause of diaster</h3>
@@ -45,13 +45,28 @@ queryContain.addEventListener("click", (e) => {
           <h3>Date</h3>
         </div>`;
 
-          data.records.forEach((record) => {
-            ui.loadReportContent(output, record, contents);
-          });
-          listFunc.classList.remove("view");
+            data.records.forEach((record) => {
+              // load result to dom
+              ui.loadReportContent(output, record, contents);
+            });
+
+            // clear search result
+            ui.clearSearchResult(contents);
+
+            listFunc.classList.remove("view");
+          }
         });
     } else {
-      console.log("please enter year to search");
+      ui.alert(
+        "please enter year to search",
+        "alert__danger",
+        queryContain,
+        adminReport
+      );
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 3000);
     }
   }
 
@@ -64,8 +79,15 @@ queryContain.addEventListener("click", (e) => {
           `/api/v1/records/month&year/${reportMonth.value}/${reportYear.value}`
         )
         .then((data) => {
-          let output = "";
-          contents.innerHTML = `<div class="admin__reports-title stickyTitle">
+          if (data.status === "fail") {
+            ui.alert(data.message, "alert__danger", queryContain, adminReport);
+
+            setTimeout(() => {
+              document.querySelector(".alert").remove();
+            }, 3000);
+          } else {
+            let output = "";
+            contents.innerHTML = `<div class="admin__reports-title stickyTitle">
               <h3>Report ID</h3>
               <h3>Lives affected</h3>
               <h3>cause of diaster</h3>
@@ -73,13 +95,28 @@ queryContain.addEventListener("click", (e) => {
               <h3>Date</h3>
         </div>`;
 
-          data.records.forEach((record) => {
-            ui.loadReportContent(output, record, contents);
-          });
-          listFunc.classList.remove("view");
+            data.records.forEach((record) => {
+              // load result to dom
+              ui.loadReportContent(output, record, contents);
+            });
+
+            // clear search result
+            ui.clearSearchResult(contents);
+
+            listFunc.classList.remove("view");
+          }
         });
     } else {
-      console.log("please enter fields to search");
+      ui.alert(
+        "please enter month and year to search",
+        "alert__danger",
+        queryContain,
+        adminReport
+      );
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 3000);
     }
   }
 
@@ -87,10 +124,17 @@ queryContain.addEventListener("click", (e) => {
     const reportId = document.querySelector(".reportID");
     if (reportId.value !== "") {
       records
-        .getRecordById(`/api/v1/records/${reportYear.value}`)
+        .getRecordById(`/api/v1/records/${reportId.value}`)
         .then((data) => {
-          let output = "";
-          contents.innerHTML = `<div class="admin__reports-title stickyTitle">
+          if (data.status === "fail") {
+            ui.alert(data.message, "alert__danger", queryContain, adminReport);
+
+            setTimeout(() => {
+              document.querySelector(".alert").remove();
+            }, 3000);
+          } else {
+            let output = "";
+            contents.innerHTML = `<div class="admin__reports-title stickyTitle">
                           <h3>Report ID</h3>
                           <h3>Lives affected</h3>
                           <h3>cause of diaster</h3>
@@ -99,13 +143,26 @@ queryContain.addEventListener("click", (e) => {
                         </div>
         `;
 
-          data.records.forEach((record) => {
-            ui.loadReportContent(output, record, contents);
-          });
-          listFunc.classList.remove("view");
+            // load result to dom
+            ui.loadReportContent(output, data.record, contents);
+
+            // clear search result
+            ui.clearSearchResult(contents);
+
+            listFunc.classList.remove("view");
+          }
         });
     } else {
-      console.log("please enter field to search");
+      ui.alert(
+        "please enter id number to search",
+        "alert__danger",
+        queryContain,
+        adminReport
+      );
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 3000);
     }
   }
 });
@@ -197,7 +254,6 @@ searchYear.addEventListener("click", (e) => {
   div.append(container);
 
   queryContain.append(div);
-  // adminReport.insertBefore(div, contents);
 
   dl_years = document.querySelector(".dl_years");
 
@@ -227,5 +283,4 @@ searchId.addEventListener("click", (e) => {
   div.append(container);
 
   queryContain.append(div);
-  // adminReport.insertBefore(div, contents);
 });
