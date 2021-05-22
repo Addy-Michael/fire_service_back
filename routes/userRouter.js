@@ -13,6 +13,8 @@ router
     userController.getUsers
   );
 
+router.route("/latest_users").get(userController.getNewUsers);
+
 router.route("/user").get(authController.getUser);
 
 router.post("/signup", authController.signup);

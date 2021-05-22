@@ -79,6 +79,12 @@ class Users {
     return resData;
   }
 
+  async getLatestUsers(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
   async registerUser(url, data) {
     const response = await fetch(url, {
       method: "POST",
@@ -221,7 +227,7 @@ class UI {
     div.className = "admin__staffs-view ";
     output = `
               <div class="admin__staffs-view--img">
-                <!-- img -->
+                <img src="/img/users/${user.photo}"/>
               </div>
               <div class="admin__staffs-view--userID uid">${user.staffID}</div>
               <div class="admin__staffs-view--fName">${user.firstname}</div>
@@ -231,8 +237,6 @@ class UI {
               <div class="admin__staffs-view--contact">${user.contact}</div>
               <div class="admin__staffs-view--DOB">${date}</div>
               <div class="admin__staffs-view--operations">
-                <i class="fas fa-eye"></i>
-                <i class="fas fa-edit"></i>
                 <i class="fas fa-trash-alt delUser"></i>
               </div>
             `;
@@ -251,6 +255,14 @@ class UI {
 
   // clear search result
   clearSearchResult(output) {
+    const div = document.createElement("div");
+    div.className = "clear";
+    div.innerHTML = `<a href="/reports.html" class="clear__btn">Clear</a>`;
+    output.append(div);
+  }
+
+  // clear user Resul
+  clearUserResult(output) {
     const div = document.createElement("div");
     div.className = "clear";
     div.innerHTML = `<a href="/reports.html" class="clear__btn">Clear</a>`;

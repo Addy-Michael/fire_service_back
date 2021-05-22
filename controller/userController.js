@@ -86,6 +86,7 @@ exports.getUsers = async (req, res) => {
 
     res.status(200).json({
       status: "successful",
+      length: user.length,
       user,
     });
   } catch (error) {
@@ -95,3 +96,14 @@ exports.getUsers = async (req, res) => {
     });
   }
 };
+
+// GET NEW RECORDS
+exports.getNewUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find().skip(0).limit(4).sort("-createdAt");
+
+  res.status(200).json({
+    status: "successful",
+    results: users.length,
+    users,
+  });
+});
