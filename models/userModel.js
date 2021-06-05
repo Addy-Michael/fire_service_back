@@ -48,13 +48,13 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: [true, "password is require"],
+    required: [true, "role is require"],
     default: "staff",
     enum: ["admin", "staff"],
   },
   staffID: {
     type: String,
-    required: [true, "password is require"],
+    required: [true, "staff id is require"],
     unique: true,
   },
   contact: {

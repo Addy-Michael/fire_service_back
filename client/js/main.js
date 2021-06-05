@@ -141,6 +141,18 @@ class Auth {
       return error;
     }
   }
+
+  async changepassword(url, data) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await response.json();
+    return resData;
+  }
 }
 
 class UI {

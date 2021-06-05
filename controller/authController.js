@@ -260,8 +260,10 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     return next(
-      new AppError("There was an error sending the email. Try again later!"),
-      500
+      new AppError(
+        "There was an error sending the email. Try again later!",
+        500
+      )
     );
   }
 });
@@ -291,17 +293,13 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 201, res);
 });
 
-exports.updatePassword = async (req, res) => {
+exports.updatePassword = catchAsync(async (req, res, next) => {
   // Get user from collection
   const user = await User.findById(req.user._id).select("+password");
 
   // Check if posted current password is correct
-  if (!(await user.correctPaword(req.body.passwordCurrent, user.password))) {
-    res.status(400).json({
-      status: "failed",
-      message: "Message did not send",
-      error,
-    });
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError("Incorrect password. Try again later!", 400));
   }
 
   //If so, update password
@@ -312,7 +310,7 @@ exports.updatePassword = async (req, res) => {
 
   // Log user in, send token
   createSendToken(user, 200, res);
-};
+});
 
 // exports.updateMe = catchAsync(async (req, res, next) => {
 //     // 1) Create error if user POSTs password data

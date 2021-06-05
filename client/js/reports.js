@@ -8,7 +8,23 @@ const years = document.querySelector(".reportYear"),
   searchYear = listFunc.querySelector(".year"),
   searchId = listFunc.querySelector(".id"),
   adminReport = document.querySelector(".admin__reports"),
-  queryContain = document.querySelector(".queryContain");
+  queryContain = document.querySelector(".queryContain"),
+  showForm = document.querySelector("#AddRec"),
+  showReportContent = showForm.querySelector(".content"),
+  showReportAlert = showForm.querySelector(".rec"),
+  recordsForm = document.querySelector(".records"),
+  showReportId = recordsForm.querySelector(".rnum"),
+  showLivesAffected = recordsForm.querySelector(".uid"),
+  showDay = recordsForm.querySelector(".dash-day"),
+  showDate = recordsForm.querySelector(".dash-date"),
+  showMonth = recordsForm.querySelector(".dash-month"),
+  showYear = recordsForm.querySelector(".dash-year"),
+  showLocation = recordsForm.querySelector(".loc"),
+  showCauseOfDisaster = recordsForm.querySelector(".dis"),
+  showReport = recordsForm.querySelector(".report"),
+  btnContain = document.querySelector(".butt");
+
+let ID_REPORT;
 
 // when dom is loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -169,11 +185,97 @@ queryContain.addEventListener("click", (e) => {
 
 contents.addEventListener("click", (e) => {
   if (e.target.classList.contains("delReport")) {
-    const id = e.target.parentElement.parentElement
+    ID_REPORT = e.target.parentElement.parentElement
       .querySelector(".reportId")
       .textContent.trim();
-    records.deleteRecord(`/api/v1/records/${id}`);
+    records.deleteRecord(`/api/v1/records/${ID_REPORT}`);
     window.location.reload();
+  }
+
+  if (e.target.classList.contains("fa-eye")) {
+    ID_REPORT = e.target.parentElement.parentElement
+      .querySelector(".admin__reports-view--num")
+      .textContent.trim();
+
+    records
+      .getRecordById(`/api/v1/records/${ID_REPORT}`)
+      .then((data) => {
+        if (data.status === "successful") {
+          showCauseOfDisaster.value = data.record.causeOfDiaster;
+          showLivesAffected.value = data.record.livesAffected;
+          showLocation.value = data.record.location;
+          showReport.value = data.record.report;
+          showReportId.value = data.record.reportID;
+          showDay.value = data.record.day;
+          showDate.value = data.record.dayNum;
+          showMonth.value = data.record.month;
+          showYear.value = data.record.year;
+        }
+      })
+      .then(recordsForm.classList.add("show"));
+  }
+
+  if (e.target.classList.contains("fa-edit")) {
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "btn btn--orange add edit";
+    a.append(document.createTextNode("Edit Report"));
+    btnContain.append(a);
+
+    ID_REPORT = e.target.parentElement.parentElement
+      .querySelector(".admin__reports-view--num")
+      .textContent.trim();
+
+    records
+      .getRecordById(`/api/v1/records/${ID_REPORT}`)
+      .then((data) => {
+        if (data.status === "successful") {
+          showCauseOfDisaster.value = data.record.causeOfDiaster;
+          showLivesAffected.value = data.record.livesAffected;
+          showLocation.value = data.record.location;
+          showReport.value = data.record.report;
+          showReportId.value = data.record.reportID;
+          showDay.value = data.record.day;
+          showDate.value = data.record.dayNum;
+          showMonth.value = data.record.month;
+          showYear.value = data.record.year;
+          console.log(data);
+        }
+      })
+      .then(recordsForm.classList.add("show"));
+  }
+});
+
+btnContain.addEventListener("click", (e) => {
+  // click to edit report
+  if (e.target.classList.contains("edit")) {
+    const data = {
+      causeOfDiaster: showCauseOfDisaster.value,
+      day: showDay.value,
+      dayNum: showDate.value,
+      livesAffected: showLivesAffected.value,
+      location: showLocation.value,
+      month: showMonth.value,
+      year: showYear.value,
+      report: showReport.value,
+    };
+
+    records
+      .editRecord(`/api/v1/records/${ID_REPORT}`, data)
+      .then(
+        ui.alert(
+          "Record edited",
+          "alert__success",
+          showReportAlert,
+          showReportContent
+        )
+      )
+      .then(
+        setTimeout(() => {
+          document.querySelector(".alert").remove();
+          window.location.reload();
+        }, 3000)
+      );
   }
 });
 

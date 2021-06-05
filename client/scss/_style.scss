@@ -208,8 +208,7 @@
 
     &-name,
     &-contact,
-    &-info,
-    &-pass {
+    &-info {
       display: flex;
       width: 100%;
       margin-bottom: 2.5rem;
@@ -556,6 +555,11 @@
   opacity: 0;
   @include transition2s;
 
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
   &:target {
     visibility: visible;
     opacity: 1;
@@ -654,7 +658,8 @@
   &__date {
     display: flex;
 
-    select {
+    select,
+    input {
       width: 100%;
 
       &:not(:last-child) {

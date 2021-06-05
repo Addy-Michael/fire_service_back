@@ -39,27 +39,17 @@
           <h3>Date</h3>
         </div>
         <!-- <div class="admin__reports-view">
-                <div class="admin__reports-view--num">
-                    001
-                </div>
-                <div class="admin__reports-view--livesAffected">
-                    004
-                </div>
-                <div class="admin__reports-view--COD">
-                    electrical fault
-                </div>
-                <div class="admin__reports-view--location">
-                    labadi - Accra
-                </div>
-                <div class="admin__reports-view--DOD">
-                    10/09/1997
-                </div>
-                <div class="admin__reports-view--operations">
-                    <i class="fas fa-eye"></i>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-alt"></i>
-                </div>
-            </div> -->
+          <div class="admin__reports-view--num">001</div>
+          <div class="admin__reports-view--livesAffected">004</div>
+          <div class="admin__reports-view--COD">electrical fault</div>
+          <div class="admin__reports-view--location">labadi - Accra</div>
+          <div class="admin__reports-view--DOD">10/09/1997</div>
+          <div class="admin__reports-view--operations">
+            <i class="fas fa-eye"></i>
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div> -->
 
         <!-- <div class="clear">
           <a href="/reports.html" class="clear__btn">Clear</a>
@@ -74,6 +64,49 @@
             <a href="#" class="year search__func">Get yearly reports</a>
             <a href="#" class="id search__func">Get by report by id</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="records" id="AddRec">
+      <div class="content">
+        <!-- <div class="records__alert alert__success">
+          <p class="alert__output">User updated</p>
+        </div> -->
+        <div class="rec">
+          <div class="records__identify">
+            <input
+              type="number"
+              class="rnum"
+              placeholder="Enter report num"
+              min="1"
+              max="31"
+            />
+            <input type="text" class="uid" placeholder="Lives affected" />
+          </div>
+          <div class="records__date">
+            <input type="text" name="day" class="date-info dash-day">
+              <!-- <option value="Monday">Mon</option> -->
+            </input>
+            <input type="number" name="date" class="date-info dash-date">
+              <!-- <option value="1">1</option>-->
+            </input>
+            <input type="text" name="month" class="date-info dash-month">
+              <!-- <option value="January">Jan</option> -->
+            </input>
+            <input type="number" name="month" class="date-info dash-year">
+              <!-- <option value="2019">2019</option>-->
+            </input>
+          </div>
+        </div>
+        <div class="rec">
+          <input type="text" placeholder="Enter location" class="loc" />
+          <input type="text" placeholder="Enter cause of diaster" class="dis" />
+        </div>
+        <textarea class="report" placeholder="Enter report"></textarea>
+        <div class="butt">
+          <a href="/reports.html" class="btn btn--orange exit">Exit Report</a>
+          <!-- <a href="#" class="btn btn--orange add">Add Report</a> -->
         </div>
       </div>
     </section>

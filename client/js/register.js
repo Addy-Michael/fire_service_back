@@ -4,6 +4,7 @@ const firstName = document.querySelector("#fname"),
   tel = document.querySelector("#tel"),
   dob = document.querySelector("#dob"),
   gen = document.querySelector("#gen"),
+  role = document.querySelector("#rol"),
   password = document.querySelector("#password"),
   confirmPass = document.querySelector("#confirmPass"),
   signUp = document.querySelector(".signUp"),
@@ -25,9 +26,11 @@ signUp.addEventListener("click", () => {
     password: password.value,
     confirmPassword: confirmPass.value,
     staffID: initial + randNum,
-    role: "admin",
+    role: role.value.toLowerCase(),
     contact: tel.value,
   };
+
+  console.log(role.value.toLowerCase());
 
   user.registerUser("/api/v1/users/signup", data).then((user) => {
     if (user.status === "successful") {

@@ -345,17 +345,17 @@ body {
   color: #c83c12;
 }
 
-.user__form-name, .user__form-contact, .user__form-info, .user__form-pass {
+.user__form-name, .user__form-contact, .user__form-info {
   display: flex;
   width: 100%;
   margin-bottom: 2.5rem;
 }
 
-.user__form-name .half, .user__form-contact .half, .user__form-info .half, .user__form-pass .half {
+.user__form-name .half, .user__form-contact .half, .user__form-info .half {
   width: 50%;
 }
 
-.user__form-name .half:not(:last-child), .user__form-contact .half:not(:last-child), .user__form-info .half:not(:last-child), .user__form-pass .half:not(:last-child) {
+.user__form-name .half:not(:last-child), .user__form-contact .half:not(:last-child), .user__form-info .half:not(:last-child) {
   margin-right: 2rem;
 }
 
@@ -685,6 +685,11 @@ body {
   transition: all 0.2s;
 }
 
+.records.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 .records:target {
   visibility: visible;
   opacity: 1;
@@ -785,11 +790,13 @@ body {
   display: flex;
 }
 
-.records__date select {
+.records__date select,
+.records__date input {
   width: 100%;
 }
 
-.records__date select:not(:last-child) {
+.records__date select:not(:last-child),
+.records__date input:not(:last-child) {
   margin-right: 1rem;
 }
 
