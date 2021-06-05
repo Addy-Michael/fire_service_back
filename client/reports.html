@@ -75,34 +75,51 @@
         </div> -->
         <div class="rec">
           <div class="records__identify">
-            <input
-              type="number"
-              class="rnum"
-              placeholder="Enter report num"
-              min="1"
-              max="31"
-            />
-            <input type="text" class="uid" placeholder="Lives affected" />
+            <div class="reportId">
+              <label for="idNum">Report ID:</label>
+              <input
+                type="number"
+                class="rnum"
+                id="idNum"
+                placeholder="Enter report num"
+                min="1"
+                max="31"
+              />
+            </div>
+            <div class="livesAffected">
+              <label for="lives">Lives affected:</label>
+              <input type="text" id="lives" class="uid" placeholder="Lives affected" />
+            </div>
           </div>
-          <div class="records__date">
-            <input type="text" name="day" class="date-info dash-day">
-              <!-- <option value="Monday">Mon</option> -->
-            </input>
-            <input type="number" name="date" class="date-info dash-date">
-              <!-- <option value="1">1</option>-->
-            </input>
-            <input type="text" name="month" class="date-info dash-month">
-              <!-- <option value="January">Jan</option> -->
-            </input>
-            <input type="number" name="month" class="date-info dash-year">
-              <!-- <option value="2019">2019</option>-->
-            </input>
+          <div class="reportDate">
+            <label>Date:</label>
+            <div class="records__date">
+              <input type="text" name="day" class="date-info dash-day">
+                <!-- <option value="Monday">Mon</option> -->
+              </input>
+              <input type="number" name="date" class="date-info dash-date">
+                <!-- <option value="1">1</option>-->
+              </input>
+              <input type="text" name="month" class="date-info dash-month">
+                <!-- <option value="January">Jan</option> -->
+              </input>
+              <input type="number" name="month" class="date-info dash-year">
+                <!-- <option value="2019">2019</option>-->
+              </input>
+            </div>
           </div>
         </div>
         <div class="rec">
-          <input type="text" placeholder="Enter location" class="loc" />
-          <input type="text" placeholder="Enter cause of diaster" class="dis" />
+          <div class="reportLoc">
+            <label for="loc">Location</label>
+            <input type="text" id="loc" placeholder="Enter location" class="loc" />
+          </div>
+          <div class="cod">
+            <label for="cod">Cause of disaster</label>
+            <input type="text" id="cod" placeholder="Enter cause of diaster" class="dis" />
+          </div>
         </div>
+        <label>Details:</label>
         <textarea class="report" placeholder="Enter report"></textarea>
         <div class="butt">
           <a href="/reports.html" class="btn btn--orange exit">Exit Report</a>

@@ -571,6 +571,11 @@
     background: #fff;
     padding: 1rem;
 
+    label {
+      font-size: 1rem;
+      color: $color-orange;
+    }
+
     .rec {
       display: flex;
       justify-content: space-between;
@@ -646,7 +651,6 @@
     margin-right: 2rem;
 
     .rnum {
-      width: 40%;
       margin-right: 1rem;
     }
 
