@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const userRoute = require("./routes/userRouter");
 const recordRoute = require("./routes/recordRouter");
-const viewRoute = require("./routes/viewRoute");
 const globalErrorHandler = require("./controller/errorHandler");
 const AppError = require("./utils/appError");
 
