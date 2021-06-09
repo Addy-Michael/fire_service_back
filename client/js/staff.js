@@ -9,20 +9,25 @@ let users = [];
 
 // when dom is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // Get All Records
-  user.getUsers("/api/v1/users/").then((data) => {
-    if (data.status === "fail") {
-      document.body.innerHTML = `
-      <h1 class ="statusCode">${data.error.statusCode}</h1>
-      <p class = "message">${data.message}</p>
-      `;
-    } else {
-      let output = "";
-      console.log(data);
-      users = data.user;
-      data.user.forEach((user) => {
-        ui.loadUserContent(output, user, content);
+  user.getUser("/api/v1/users/user").then((user) => {
+    if (user.status === "success" && user.data.role === "admin") {
+      // Get All Records
+      user.getUsers("/api/v1/users/").then((data) => {
+        if (data.status === "fail") {
+          document.body.innerHTML = `
+          <h1 class ="statusCode">${data.error.statusCode}</h1>
+          <p class = "message">${data.message}</p>
+          `;
+        } else {
+          let output = "";
+          users = data.user;
+          data.user.forEach((user) => {
+            ui.loadUserContent(output, user, content);
+          });
+        }
       });
+    } else {
+      window.location.href = "/index.html";
     }
   });
 });

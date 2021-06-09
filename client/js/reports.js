@@ -28,12 +28,31 @@ let ID_REPORT;
 
 // when dom is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // Get All Records
-  records.getAllRecords("/api/v1/records").then((data) => {
-    let output = "";
-    data.records.forEach((record) => {
-      ui.loadReportContent(output, record, contents);
-    });
+  // check user role and get specific record
+  user.getUser("/api/v1/users/user").then((user) => {
+    if (user.status === "success" && user.data.role === "admin") {
+      // Get All Records
+      records.getAllRecords("/api/v1/records").then((data) => {
+        let output = "";
+        data.records.forEach((record) => {
+          ui.loadReportContent(output, record, contents);
+        });
+      });
+    } else if (user.status === "success" && user.data.role === "staff") {
+      // get user record entered
+      records.getRecordByObjId("/api/v1/records/user/reports").then((data) => {
+        if (data.status === "fail") {
+          document.body.innerHTML = `<h1>${data.message.toUpperCase()}</h1>`;
+        } else {
+          let output = "";
+          data.records.forEach((record) => {
+            ui.loadUserReportContent(output, record, contents);
+          });
+        }
+      });
+    } else {
+      window.location.href = "index.html";
+    }
   });
 });
 

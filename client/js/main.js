@@ -19,6 +19,12 @@ class Records {
     return resData;
   }
 
+  async getRecordByObjId(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
   async getRecordByMonth(url) {
     const response = await fetch(url);
     const resData = await response.json();
@@ -226,6 +232,35 @@ class UI {
                           <i class="fas fa-eye"></i>
                           <i class="fas fa-edit"></i>
                           <i class="fas fa-trash-alt delReport"></i>
+                      </div>
+                  `;
+    div.innerHTML = output;
+    insertContent.appendChild(div);
+  }
+
+  // load user records to dom
+  loadUserReportContent(output, record, insertContent) {
+    const div = document.createElement("div");
+    div.className = "admin__reports-view";
+    output = `
+                      <div class="admin__reports-view--num reportId">
+                          ${record.reportID}
+                      </div>
+                      <div class="admin__reports-view--livesAffected">
+                          ${record.livesAffected}
+                      </div>
+                      <div class="admin__reports-view--COD">
+                          ${record.causeOfDiaster}
+                      </div>
+                      <div class="admin__reports-view--location">
+                          ${record.location}
+                      </div>
+                      <div class="admin__reports-view--DOD">
+                          ${record.dayNum} - ${record.month} - ${record.year}
+                      </div>
+                      <div class="admin__reports-view--operations">
+                          <i class="fas fa-eye"></i>
+                          <i class="fas fa-edit"></i>
                       </div>
                   `;
     div.innerHTML = output;

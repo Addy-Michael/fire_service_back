@@ -10,6 +10,11 @@ router
   .post(authController.protect, recordController.addRecord);
 
 router.get("/new_records/", recordController.getNewRecords);
+router.get(
+  "/user/reports",
+  authController.protect,
+  recordController.getReportByObjectId
+);
 
 router
   .route("/:reportID")

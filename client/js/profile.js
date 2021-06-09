@@ -13,11 +13,28 @@ const navEmail = document.querySelector(".userEmail"),
   navPicture = document.querySelector(".profilePicture").querySelector("img"),
   signOut = document.querySelector(".fa-sign-out-alt"),
   formContent = document.querySelector(".user__form"),
-  imageContainer = formContent.querySelector(".user__form-picture");
+  imageContainer = formContent.querySelector(".user__form-picture"),
+  addReport = document.querySelector(".add"),
+  loc = document.querySelector(".loc"),
+  cod = document.querySelector(".dis"),
+  report = document.querySelector(".report"),
+  reportID = document.querySelector(".rnum"),
+  livesAffected = document.querySelector(".uid"),
+  addRecord = document.querySelector(".records").querySelector(".content"),
+  rec = addRecord.querySelector(".rec"),
+  getDay = document.querySelector(".dash-day"),
+  getDate = document.querySelector(".dash-date"),
+  getMonth = document.querySelector(".dash-month"),
+  getYear = document.querySelector(".dash-year");
 
 let staffID;
 
 document.addEventListener("DOMContentLoaded", () => {
+  ui.loadYearToDom(getYear);
+  ui.loadDateToDom(getDate);
+  ui.loadDateValuesToDom(days, getDay);
+  ui.loadDateValuesToDom(months, getMonth);
+
   // disable buttons
   gender.disabled = true;
   role.disabled = true;
@@ -37,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       role.value = user.data.role;
       staffID = user.data.staffID;
     } else {
-      window.location.href = "/dashboard.html";
+      window.location.href = "/index.html";
     }
   });
 });
@@ -99,4 +116,47 @@ signOut.addEventListener("click", (e) => {
         window.location.href = "/index.html";
       }, 3 * 1000);
     });
+});
+
+// Add report
+addReport.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (
+    loc.value !== "" &&
+    reportID.value !== "" &&
+    livesAffected.value !== "" &&
+    cod.value !== "" &&
+    getDay.value !== "" &&
+    getMonth.value !== "" &&
+    getDate.value !== "" &&
+    getYear.value !== "" &&
+    report.value !== ""
+  ) {
+    const data = {
+      location: loc.value,
+      reportID: reportID.value,
+      livesAffected: livesAffected.value,
+      causeOfDiaster: cod.value,
+      day: getDay.value,
+      month: getMonth.value,
+      dayNum: getDate.value,
+      year: getYear.value,
+      report: report.value,
+    };
+
+    records.addRecord("/api/v1/records/", data).then((record) => {
+      ui.alert("Record added", "alert__success", rec, addRecord);
+
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 3000);
+    });
+  } else {
+    ui.alert("Please fill all fields", "alert__danger", rec, addRecord);
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+    }, 3000);
+  }
 });

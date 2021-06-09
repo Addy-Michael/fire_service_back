@@ -268,6 +268,10 @@ body {
   align-items: center;
 }
 
+.profile__header .nav__list li:not(:last-child) {
+  margin-right: 1rem;
+}
+
 .profile__header .nav__list .profilePicture {
   margin-right: 1rem;
   display: block;

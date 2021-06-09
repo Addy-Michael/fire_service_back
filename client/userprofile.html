@@ -28,6 +28,17 @@
               >
             </li>
             <li>
+              <a href="#AddRec" class="btn addRecord">Add Record</a>
+            </li>
+            <li>
+              <a
+                href="/reports.html"
+                target="_blank"
+                class="btn viewStaffRecords"
+                >View Records</a
+              >
+            </li>
+            <li>
               <a href="#"><i class="signOut fas fa-sign-out-alt"></i></a>
             </li>
           </ul>
@@ -106,6 +117,50 @@
         </div>
       </section>
     </main>
+    <section class="records" id="AddRec">
+      <div class="content">
+        <!-- <div class="records__alert alert__success">
+          <p class="alert__output">User updated</p>
+        </div> -->
+        <div class="rec">
+          <div class="records__identify">
+            <input
+              type="number"
+              class="rnum"
+              placeholder="Enter report num"
+              min="1"
+              max="31"
+            />
+            <input type="text" class="uid" placeholder="Lives affected" />
+          </div>
+          <div class="records__date">
+            <select name="day" class="date-info dash-day">
+              <!-- <option value="Monday">Mon</option> -->
+            </select>
+            <select name="date" class="date-info dash-date">
+              <!-- <option value="1">1</option>-->
+            </select>
+            <select name="month" class="date-info dash-month">
+              <!-- <option value="January">Jan</option> -->
+            </select>
+            <select name="month" class="date-info dash-year">
+              <!-- <option value="2019">2019</option>-->
+            </select>
+          </div>
+        </div>
+        <div class="rec">
+          <input type="text" placeholder="Enter location" class="loc" />
+          <input type="text" placeholder="Enter cause of diaster" class="dis" />
+        </div>
+        <textarea class="report" placeholder="Enter report"></textarea>
+        <div class="butt">
+          <a href="/userprofile.html" class="btn btn--orange exit"
+            >Exit Report</a
+          >
+          <a href="#" class="btn btn--orange add">Add Report</a>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <div class="container">
         <p>
@@ -114,7 +169,6 @@
         </p>
       </div>
     </footer>
-
     <script src="/js/main.js"></script>
     <script src="/js/profile.js"></script>
   </body>

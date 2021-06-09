@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const recordSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   reportID: {
     type: Number,
     required: [true, "Must have a report ID"],

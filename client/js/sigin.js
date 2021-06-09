@@ -4,6 +4,17 @@ const email = document.querySelector(".getStaffId"),
   formContent = document.querySelector(".sign__form--content"),
   formId = formContent.querySelector(".form__id");
 
+// Check if user is signed
+document.addEventListener("DOMContentLoaded", () => {
+  user.getUser("/api/v1/users/user").then((user) => {
+    if (user.status === "success" && user.data.role === "admin") {
+      window.location.href = "/dashboad.html";
+    } else if (user.status === "success" && user.data.role === "staff") {
+      window.location.href = "/userprofile.html";
+    }
+  });
+});
+
 signin.addEventListener("click", () => {
   if (email.value !== "" && password.value !== "") {
     const data = {
@@ -17,10 +28,12 @@ signin.addEventListener("click", () => {
 
         setTimeout(() => {
           document.querySelector(".alert").remove();
-          window.location.reload();
+          // window.location.reload();
         }, 3000);
-      } else {
+      } else if (data.status === "successful" && data.user.role === "admin") {
         window.location.href = "/dashboard.html";
+      } else if (data.status === "successful" && data.user.role === "staff") {
+        window.location.href = "/userprofile.html";
       }
     });
   } else {
