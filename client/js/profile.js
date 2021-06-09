@@ -160,3 +160,20 @@ addReport.addEventListener("click", (e) => {
     }, 3000);
   }
 });
+
+// image preview
+img_input.addEventListener("change", function () {
+  const file = this.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      image.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(file);
+  } else {
+    image.src = "/img/users/profile.jpg";
+  }
+});
