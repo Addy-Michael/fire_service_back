@@ -33,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Get total users
-      user.getUsers("/api/v1/users/").then((data) => {
+      user.getUserses("/api/v1/users/").then((data) => {
+        console.log(data);
         totalStaff.innerHTML = `${data.length} <h3>Staffs</h3>`;
       });
 

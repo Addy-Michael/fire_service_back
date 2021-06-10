@@ -79,7 +79,7 @@ class Users {
     return resData;
   }
 
-  async getUsers(url) {
+  async getUserses(url) {
     const response = await fetch(url);
     const resData = await response.json();
     return resData;
