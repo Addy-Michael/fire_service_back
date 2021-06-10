@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const compression = require("compression");
 const userRoute = require("./routes/userRouter");
 const recordRoute = require("./routes/recordRouter");
 const globalErrorHandler = require("./controller/errorHandler");
@@ -28,6 +29,7 @@ app.use(
   express.static(path.resolve(__dirname, "client", "img", "users"))
 );
 app.use("/js", express.static(path.resolve(__dirname, "client", "js")));
+app.use(compression());
 
 // setting routes
 app.use("/api/v1/users", userRoute);

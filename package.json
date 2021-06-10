@@ -4,6 +4,7 @@
   "description": "backend for the firefighters website",
   "main": "app.js",
   "scripts": {
+    "start": "node server.js",
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js"
   },
@@ -11,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -22,5 +24,8 @@
     "nodemailer": "^6.5.0",
     "sharp": "^0.28.2",
     "validator": "^13.5.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
