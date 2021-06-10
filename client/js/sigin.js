@@ -8,7 +8,7 @@ const email = document.querySelector(".getStaffId"),
 document.addEventListener("DOMContentLoaded", () => {
   user.getUser("/api/v1/users/user").then((user) => {
     if (user.status === "success" && user.data.role === "admin") {
-      window.location.href = "/dashboad.html";
+      window.location.href = "/dashboard.html";
     } else if (user.status === "success" && user.data.role === "staff") {
       window.location.href = "/userprofile.html";
     }

@@ -315,6 +315,43 @@ class UI {
     div.innerHTML = `<a href="/reports.html" class="clear__btn">Clear</a>`;
     output.append(div);
   }
+
+  // header content
+  headerContent(user) {
+    let content;
+    if (user && user.data.role === "admin") {
+      content = `
+      <div class="container">
+              <nav class="nav">
+                  <h1>FireFighters</h1>
+                  <ul class="nav__list">
+                      <li><a href="#Home">Home</a></li>
+                      <li><a href="#About">About</a></li>
+                      <li><a href="#Services">Services</a></li>
+                      <li><a href="/dashboard.html">Dashboard</a></li>
+                      <li><a href="/signin.html">Sign in</a></li>
+                  </ul>
+              </nav>
+          </div>
+      `;
+    } else {
+      content = `
+      <div class="container">
+              <nav class="nav">
+                  <h1>FireFighters</h1>
+                  <ul class="nav__list">
+                      <li><a href="#Home">Home</a></li>
+                      <li><a href="#About">About</a></li>
+                      <li><a href="#Services">Services</a></li>
+                      <li><a href="/signin.html">Sign in</a></li>
+                  </ul>
+              </nav>
+          </div>
+      `;
+    }
+
+    return content;
+  }
 }
 
 const days = [

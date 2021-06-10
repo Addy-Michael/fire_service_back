@@ -10,7 +10,7 @@ const navEmail = document.querySelector(".userEmail"),
   deleteProfile = document.querySelector(".delProfile"),
   img_input = document.querySelector(".img_inputs"),
   image = document.querySelector(".user__form-picture").querySelector("img"),
-  navPicture = document.querySelector(".profilePicture").querySelector("img"),
+  // navPicture = document.querySelector(".profilePicture").querySelector("img"),
   signOut = document.querySelector(".fa-sign-out-alt"),
   formContent = document.querySelector(".user__form"),
   imageContainer = formContent.querySelector(".user__form-picture"),
@@ -25,7 +25,8 @@ const navEmail = document.querySelector(".userEmail"),
   getDay = document.querySelector(".dash-day"),
   getDate = document.querySelector(".dash-date"),
   getMonth = document.querySelector(".dash-month"),
-  getYear = document.querySelector(".dash-year");
+  getYear = document.querySelector(".dash-year"),
+  header = document.querySelector(".profile__header");
 
 let staffID;
 
@@ -44,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user.data) {
       firstName.value = user.data.firstname;
       lastName.value = user.data.surname;
-      navEmail.textContent = user.data.email;
+      // navEmail.textContent = user.data.email;
       mail.value = user.data.email;
       tel.value = user.data.contact;
       //   dob.value = new Date(user.data.dob).toISOString();
       gender.value = user.data.gender;
       image.src = `/img/users/${user.data.photo}`;
-      navPicture.src = `/img/users/${user.data.photo}`;
+      // navPicture.src = `/img/users/${user.data.photo}`;
       role.value = user.data.role;
       staffID = user.data.staffID;
     } else {
