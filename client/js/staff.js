@@ -9,8 +9,8 @@ let users = [];
 
 // when dom is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  user.getUser("/api/v1/users/user").then((user) => {
-    if (user.status === "success" && user.data.role === "admin") {
+  user.getUser("/api/v1/users/user").then((staff) => {
+    if (staff.status === "success" && staff.data.role === "admin") {
       // Get All Records
       user.getUsers("/api/v1/users/").then((data) => {
         if (data.status === "fail") {

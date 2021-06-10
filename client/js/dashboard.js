@@ -25,16 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ui.loadDateValuesToDom(months, getMonth);
 
   // Check user
-  user.getUser("/api/v1/users/user").then((user) => {
-    if (user.status === "success" && user.data.role === "admin") {
+  user.getUser("/api/v1/users/user").then((staff) => {
+    if (staff.status === "success" && staff.data.role === "admin") {
       // Get total records
       records.getAllRecords("/api/v1/records/").then((data) => {
         totalRecord.innerHTML = `${data.records.length} <h3>Records</h3>`;
       });
 
       // Get total users
-      user.getUserses("/api/v1/users/").then((data) => {
-        console.log(data);
+      user.getUsers("/api/v1/users/").then((data) => {
         totalStaff.innerHTML = `${data.length} <h3>Staffs</h3>`;
       });
 
@@ -74,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Set dashboard user image and role
-      role.textContent = user.data.role.toUpperCase();
-      dashboardPicture.src = `/img/users/${user.data.photo}`;
+      role.textContent = staff.data.role.toUpperCase();
+      dashboardPicture.src = `/img/users/${staff.data.photo}`;
     } else if (user.status === "success" && user.data.role === "staff") {
       window.location.href = "/userprofile.html";
     } else {
